@@ -9,5 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 public class Helper extends Item{
-    
+    public void kortsteWeg(){
+        
+    }
 }

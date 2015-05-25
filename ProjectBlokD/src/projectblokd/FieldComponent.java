@@ -8,11 +8,13 @@ package projectblokd;
  *
  * @author Quinten
  */
-public class Veld {
-    private int x;
-    private int y;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+
+public class FieldComponent extends JComponent{
     
-    public void moveItem(Item i){
+    @Override
+    public void paintComponent(Graphics g){
         
     }
 }
