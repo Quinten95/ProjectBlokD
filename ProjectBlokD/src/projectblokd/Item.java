@@ -9,5 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 public class Item {
-    
+    public void pickUp(Speler s){
+        
+    }
 }

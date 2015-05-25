@@ -9,5 +9,5 @@ package projectblokd;
  * @author Quinten
  */
 public class Doolhof {
-    
+    private String size;
 }

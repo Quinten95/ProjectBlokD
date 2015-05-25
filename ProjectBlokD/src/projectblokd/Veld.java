@@ -9,5 +9,10 @@ package projectblokd;
  * @author Quinten
  */
 public class Veld {
+    private int x;
+    private int y;
     
+    public void moveItem(){
+        
+    }
 }

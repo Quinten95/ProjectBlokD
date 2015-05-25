@@ -10,4 +10,7 @@ package projectblokd;
  */
 public class Cheater extends Item {
     
+    public void stappenTerug(){
+        
+    }
 }

@@ -9,5 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 public class Vriend extends Item{
-    
+    public void nextLevel(){
+        
+    }
 }

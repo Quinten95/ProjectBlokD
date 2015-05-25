@@ -9,5 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 public class Speler extends Item {
+    private int stappen;
+    private int ammo;
     
 }

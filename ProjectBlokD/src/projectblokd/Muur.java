@@ -9,5 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 public class Muur extends Item{
+    private boolean verwoestbaar;
+    
     
 }
