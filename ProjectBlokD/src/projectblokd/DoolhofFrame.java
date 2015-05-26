@@ -16,26 +16,23 @@ import javax.swing.*;
 public class DoolhofFrame extends JFrame{
     
     private JPanel panel = new JPanel();
-    private JPanel panel2 = new JPanel();
     private JButton btn;
-    private WallComponent walls;
+    Muur muur = new Muur(true);
+    
+    
     
     public DoolhofFrame(){
         initComponents();
     }
     
     public void initComponents(){
-        panel.setLayout(new GridLayout(10, 20));
-        panel2.setLayout(new BorderLayout());
         btn = new JButton("Restart");
+        muur.setPreferredSize(new Dimension(950, 500));
+        muur.paintWalls();
+        panel.add(muur);
+        panel.add(btn);
         
-        walls = new WallComponent();
-        walls.setPreferredSize(new Dimension(10, 10));
-        walls.showComponent();
-        panel.add(walls);
-        panel2.add(btn, BorderLayout.NORTH);
-        panel2.add(panel, BorderLayout.CENTER);
-        add(panel2);
+        add(panel);
     }
     
 }
