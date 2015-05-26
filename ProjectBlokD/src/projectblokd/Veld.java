@@ -12,6 +12,11 @@ public class Veld {
     private int x;
     private int y;
     
+    public Veld(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+    
     public void moveItem(Item i){
         
     }

@@ -15,7 +15,7 @@ public class Muur extends Item{
     private boolean verwoestbaar;
     private int y;
     private int x;
-    private int[][] maze = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+    private int[][] maze1 = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                             {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                             {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1},
                             {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1},
@@ -30,9 +30,6 @@ public class Muur extends Item{
             };
     
     
-    public Muur(boolean verwoestbaar){
-        this.verwoestbaar = verwoestbaar;
-    }
     
     public void paintWalls(){
         repaint();
@@ -46,7 +43,7 @@ public class Muur extends Item{
         y = 1;
         for(int i = 0; i < 12; i++){
             for(int j = 0; j < 27; j++){
-                if(maze[i][j] == 1){
+                if(maze1[i][j] == 1){
                     g.fillRect(x, y, 35, 35);
                     g.setColor(Color.DARK_GRAY);                    
                 }
