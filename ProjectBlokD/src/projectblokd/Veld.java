@@ -17,6 +17,10 @@ public class Veld {
         this.y = y;
     }
     
+    public Veld getFieldAt(int x, int y){
+        return new Veld(x, y);
+    }
+    
     public void moveItem(Item i){
         
     }

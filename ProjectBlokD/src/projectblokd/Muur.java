@@ -6,6 +6,7 @@ package projectblokd;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,9 +27,8 @@ public class Muur extends Item{
                             {1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
                             {1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
                             {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-                            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            };
-    
+                            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+   private ArrayList<Veld> muurVeld = new ArrayList<>();
     
     
     public void paintWalls(){
@@ -43,11 +43,15 @@ public class Muur extends Item{
         y = 1;
         for(int i = 0; i < 12; i++){
             for(int j = 0; j < 27; j++){
+                
+                Veld veld = new Veld(x, y);
                 if(maze1[i][j] == 1){
                     g.fillRect(x, y, 35, 35);
-                    g.setColor(Color.DARK_GRAY);                    
+                    g.setColor(Color.DARK_GRAY);
+                    muurVeld.add(veld);
                 }
                 x = x + 35;
+                
             }
             x = 1;
             y = y + 35;
