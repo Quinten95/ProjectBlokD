@@ -13,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 public class DoolhofFrame extends JFrame{
@@ -31,6 +33,23 @@ public class DoolhofFrame extends JFrame{
             doolhof.paintWalls();
         }
     }
+    
+    class Adapter extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent evt){
+            switch (evt.getKeyCode()){
+                case KeyEvent.VK_DOWN: doolhof.moveCharacterDown();
+                    break;
+                case KeyEvent.VK_UP: doolhof.moveCharacterUp();
+                    break;
+                case KeyEvent.VK_LEFT: doolhof.moveCharacterLeft();
+                    break;
+                case KeyEvent.VK_RIGHT: doolhof.moveCharacterRight();
+                    break;  
+            };
+        }
+        
+    }
     public void initComponents(){
         btn = new JButton("Restart");
         ActionListener listener = new ClickListener();
@@ -42,6 +61,8 @@ public class DoolhofFrame extends JFrame{
         
         panel.add(doolhof);       
         panel.add(btn);
+        panel.addKeyListener(new Adapter());
+        panel.setFocusable(true);
         
         add(panel);
     }

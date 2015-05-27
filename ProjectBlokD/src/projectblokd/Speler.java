@@ -16,6 +16,8 @@ public class Speler extends Item {
     private int stappen;
     private int ammo;
     
+    
+    
     public BufferedImage setImage(String path){
         BufferedImage image = null;
         try{

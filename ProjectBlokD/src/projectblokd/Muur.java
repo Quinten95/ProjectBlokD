@@ -35,6 +35,10 @@ public class Muur extends Item{
     public ArrayList getMaze1(){
         return muurVeld;
     }
+    
+    public int[][] getWalls(){
+        return maze1Walls;
+    }
     public void fillMaze1(){
         x = 1;
         y = 1;
