@@ -26,11 +26,15 @@ public class DoolhofFrame extends JFrame{
     
     public DoolhofFrame(){
         initComponents();
+        setResizable(false);
     }
     class ClickListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            doolhof.paintWalls();
+            doolhof.init();
+            doolhof.paintMaze();
+            doolhof.requestFocusInWindow();
+            
         }
     }
     
@@ -57,12 +61,12 @@ public class DoolhofFrame extends JFrame{
         
         doolhof.init();
         doolhof.setPreferredSize(new Dimension(950, 500));
-        doolhof.paintWalls();
+        doolhof.paintMaze();
         
         panel.add(doolhof);       
         panel.add(btn);
-        panel.addKeyListener(new Adapter());
-        panel.setFocusable(true);
+        doolhof.addKeyListener(new Adapter());
+        doolhof.setFocusable(true);
         
         add(panel);
     }

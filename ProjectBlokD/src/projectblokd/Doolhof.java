@@ -19,18 +19,20 @@ public class Doolhof extends JComponent{
     Muur muur = new Muur();
     Speler speler = new Speler();
     private Image spelerImage;
-    private int spelerX = 36;
-    private int spelerY = 36;
+    private int spelerX;
+    private int spelerY;
     
     ArrayList<Veld> maze1Walls = new ArrayList<>();
     
     public void init(){
+        spelerX = 36;
+        spelerY = 36;
         muur.fillMaze1();
         maze1Walls = muur.getMaze1();
         spelerImage = speler.setImage("/images/MainCharacterRight.png");
         
     }
-    public void paintWalls(){
+    public void paintMaze(){
         repaint();
     }
     
