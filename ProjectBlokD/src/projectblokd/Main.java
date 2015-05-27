@@ -8,7 +8,7 @@ package projectblokd;
  *
  * @author Quinten
  */
-import javax.swing.*;
+import javax.swing.JFrame;
 public class Main {
 
     /**
@@ -19,6 +19,7 @@ public class Main {
         frame.setSize(1000, 600);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setTitle("MAZE GAME");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

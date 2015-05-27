@@ -4,13 +4,10 @@
  */
 package projectblokd;
 
-import java.util.ArrayList;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.JComponent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 /**
  *
  * @author Quinten
