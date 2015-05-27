@@ -20,7 +20,7 @@ public class Doolhof extends JComponent{
     Speler speler = new Speler();
     private Image spelerImage;
     private int spelerX = 36;
-    private int spelerY = 38;
+    private int spelerY = 36;
     
     ArrayList<Veld> maze1Walls = new ArrayList<>();
     
@@ -45,27 +45,91 @@ public class Doolhof extends JComponent{
     } 
     
     public void moveCharacterLeft(){
-        spelerX = spelerX - 35;
-        spelerImage = speler.setImage("/images/MainCharacterLeft.png");
-        repaint();
+        boolean collision = false;
+        for(Veld v : maze1Walls){
+            int x = v.getX();
+            if(x == (spelerX - 35)){
+                int y = v.getY();
+                if(y == spelerY){
+                    collision = true;
+                }
+            }
+        }
+        if(collision == false){
+            spelerX = spelerX - 35;
+            spelerImage = speler.setImage("/images/MainCharacterLeft.png");
+            repaint();
+        }
+        else if(collision == true){
+            spelerImage = speler.setImage("/images/MainCharacterLeft.png");
+            repaint();
+        }
     }
     
     public void moveCharacterRight(){
-        spelerX = spelerX + 35;
-        spelerImage = speler.setImage("/images/MainCharacterRight.png");
-        repaint();
+        boolean collision = false;
+        for(Veld v : maze1Walls){
+            int x = v.getX();
+            if(x == (spelerX + 35)){
+                int y = v.getY();
+                if(y == spelerY){
+                    collision = true;
+                }
+            }
+        }
+        if(collision == false){
+            spelerX = spelerX + 35;
+            spelerImage = speler.setImage("/images/MainCharacterRight.png");
+            repaint();
+        }
+        else if (collision == true){
+            spelerImage = speler.setImage("/images/MainCharacterRight.png");
+            repaint();
+        }
     }
     
     public void moveCharacterDown(){
-        spelerY = spelerY + 35;
-        spelerImage = speler.setImage("/images/MainCharacterDown.png");
-        repaint();
+        boolean collision = false;
+        for(Veld v : maze1Walls){
+            int y = v.getY();
+            if(y == (spelerY + 35)){
+                int x = v.getX();
+                if(x == spelerX){
+                    collision = true;
+                }
+            }
+        }
+        if(collision == false){
+            spelerY = spelerY + 35;
+            spelerImage = speler.setImage("/images/MainCharacterDown.png");
+            repaint();
+        }
+        else if (collision == true){
+            spelerImage = speler.setImage("/images/MainCharacterDown.png");
+            repaint();
+        }
     }
     
     public void moveCharacterUp(){
-        spelerY = spelerY - 35;
-        spelerImage = speler.setImage("/images/MainCharacterUp.png");
-        repaint();
+        boolean collision = false;
+        for(Veld v : maze1Walls){
+            int y = v.getY();
+            if(y == (spelerY - 35)){
+                int x = v.getX();
+                if(x == spelerX){
+                    collision = true;
+                }
+            }
+        }
+        if(collision == false){
+            spelerY = spelerY - 35;
+            spelerImage = speler.setImage("/images/MainCharacterUp.png");
+            repaint();
+        }
+        else if (collision == true){
+            spelerImage = speler.setImage("/images/MainCharacterUp.png");
+            repaint();
+        }
     }
     
 }
