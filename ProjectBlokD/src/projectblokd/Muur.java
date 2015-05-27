@@ -35,7 +35,9 @@ public class Muur extends Item{
         repaint();
     }
     
-    
+    public ArrayList getMuurVelden(){
+        return muurVeld;
+    }
     
     @Override
     public void paintComponent(Graphics g){
@@ -44,11 +46,11 @@ public class Muur extends Item{
         for(int i = 0; i < 12; i++){
             for(int j = 0; j < 27; j++){
                 
-                Veld veld = new Veld(x, y);
+                
                 if(maze1[i][j] == 1){
                     g.fillRect(x, y, 35, 35);
                     g.setColor(Color.DARK_GRAY);
-                    muurVeld.add(veld);
+                    muurVeld.add(new Veld(x, y));
                 }
                 x = x + 35;
                 
