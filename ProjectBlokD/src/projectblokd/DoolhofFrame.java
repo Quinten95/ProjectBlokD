@@ -19,8 +19,7 @@ public class DoolhofFrame extends JFrame{
     
     private JPanel panel = new JPanel();
     private JButton btn;
-    Muur muur = new Muur();
-    
+    Doolhof doolhof = new Doolhof();
     
     
     public DoolhofFrame(){
@@ -29,17 +28,19 @@ public class DoolhofFrame extends JFrame{
     class ClickListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            muur.paintWalls();
+            doolhof.paintWalls();
         }
     }
     public void initComponents(){
         btn = new JButton("Restart");
-        muur.setPreferredSize(new Dimension(950, 500));
-        muur.paintWalls();
-        panel.add(muur);
         ActionListener listener = new ClickListener();
         btn.addActionListener(listener);
         
+        doolhof.init();
+        doolhof.setPreferredSize(new Dimension(950, 500));
+        doolhof.paintWalls();
+        
+        panel.add(doolhof);       
         panel.add(btn);
         
         add(panel);

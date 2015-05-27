@@ -21,6 +21,14 @@ public class Veld {
         return new Veld(x, y);
     }
     
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
+    
     public void moveItem(Item i){
         
     }

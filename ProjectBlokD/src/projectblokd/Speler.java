@@ -4,6 +4,9 @@
  */
 package projectblokd;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Quinten
@@ -11,5 +14,10 @@ package projectblokd;
 public class Speler extends Item {
     private int stappen;
     private int ammo;
+    private Image playerImage;
+    
+    public void loadImage(){
+        playerImage = new ImageIcon("images/MainCharacter.png").getImage();
+    }
     
 }
