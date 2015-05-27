@@ -7,6 +7,7 @@ package projectblokd;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 import javax.swing.JComponent;
 /**
  *
@@ -15,12 +16,15 @@ import javax.swing.JComponent;
 public class Doolhof extends JComponent{
     Muur muur = new Muur();
     Speler speler = new Speler();
+    private Image spelerImage;
     
     ArrayList<Veld> maze1Walls = new ArrayList<>();
     
     public void init(){
         muur.fillMaze1();
         maze1Walls = muur.getMaze1();
+        spelerImage = speler.setImage("/images/MainCharacter.png");
+        
     }
     public void paintWalls(){
         repaint();
@@ -33,6 +37,7 @@ public class Doolhof extends JComponent{
             int y = v.getY();
             g.fillRect(x, y, 35, 35);
         }
+        g.drawImage(spelerImage, 35, 35, 30, 30, this);
     } 
 }
 

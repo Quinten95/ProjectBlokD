@@ -4,7 +4,8 @@
  */
 package projectblokd;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,10 +15,16 @@ import javax.swing.ImageIcon;
 public class Speler extends Item {
     private int stappen;
     private int ammo;
-    private Image playerImage;
     
-    public void loadImage(){
-        playerImage = new ImageIcon("images/MainCharacter.png").getImage();
+    public BufferedImage setImage(String path){
+        BufferedImage image = null;
+        try{
+            image = ImageIO.read(this.getClass().getResource(path));
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return image;
     }
     
 }
