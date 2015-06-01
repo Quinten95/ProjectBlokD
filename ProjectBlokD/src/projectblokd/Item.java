@@ -10,8 +10,6 @@ import javax.swing.JComponent;
  *
  * @author Quinten
  */
-public class Item extends JComponent{
-    public void pickUp(Speler s){
-        
-    }
+public class Item{
+    
 }

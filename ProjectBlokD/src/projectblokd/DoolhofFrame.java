@@ -22,7 +22,7 @@ public class DoolhofFrame extends JFrame{
     private JPanel panel = new JPanel();
     private JButton btn;
     Doolhof doolhof = new Doolhof();
-    
+    Speler speler = new Speler();
     
     public DoolhofFrame(){
         initComponents();
@@ -42,13 +42,21 @@ public class DoolhofFrame extends JFrame{
         @Override
         public void keyPressed(KeyEvent evt){
             switch (evt.getKeyCode()){
-                case KeyEvent.VK_DOWN: doolhof.moveCharacterDown();
+                case KeyEvent.VK_DOWN: speler.moveDown();
+                                       doolhof.setImage("/images/MainCharacterDown.png");
+                                       doolhof.paintMaze();
                     break;
-                case KeyEvent.VK_UP: doolhof.moveCharacterUp();
+                case KeyEvent.VK_UP: speler.moveUp();
+                                     doolhof.setImage("/images/MainCharacterUp.png");
+                                     doolhof.paintMaze();
                     break;
-                case KeyEvent.VK_LEFT: doolhof.moveCharacterLeft();
+                case KeyEvent.VK_LEFT: speler.moveLeft(); 
+                                       doolhof.setImage("/images/MainCharacterLeft.png");
+                                       doolhof.paintMaze();
                     break;
-                case KeyEvent.VK_RIGHT: doolhof.moveCharacterRight();
+                case KeyEvent.VK_RIGHT: speler.moveRight();                
+                                        doolhof.setImage("/images/MainCharacterRight.png");
+                                        doolhof.paintMaze();
                     break;  
             };
         }

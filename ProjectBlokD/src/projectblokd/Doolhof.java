@@ -13,21 +13,31 @@ import javax.swing.JComponent;
  * @author Quinten
  */
 public class Doolhof extends JComponent{
-    Muur muur = new Muur();
+    
     Speler speler = new Speler();
     private Image spelerImage;
     private int spelerX;
     private int spelerY;
+    private int[][] maze1 = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                             {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
+                             {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+                             {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                             {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
+                             {1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                             {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
+                             {1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                             {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
+                             {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
+                             {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
     
-    ArrayList<Veld> maze1Walls = new ArrayList<>();
+    
+    
     
     public void init(){
-        spelerX = 36;
-        spelerY = 36;
-        muur.fillMaze1();
-        maze1Walls = muur.getMaze1();
         spelerImage = speler.setImage("/images/MainCharacterRight.png");
-        
+        speler.setY(36);
+        speler.setX(36);
     }
     public void paintMaze(){
         repaint();
@@ -35,102 +45,36 @@ public class Doolhof extends JComponent{
     
     @Override
     public void paintComponent(Graphics g){
-        for(Veld v : maze1Walls){
-            int x = v.getX();
-            int y = v.getY();
-            g.fillRect(x, y, 35, 35);
+        
+        int x = 1;
+        int y = 1;
+        for(int i = 0; i < 12; i++){
+            for(int j = 0; j < 27; j++){
+                if(maze1[i][j] == 1){
+                    Veld v = new Veld(x, y, true);
+                    v.fillMaze1Fields(v);
+                    g.fillRect(x, y, 35, 35);
+                }
+                else{
+                    Veld v = new Veld(x, y, false);
+                    v.fillMaze1Fields(v);
+                }
+                x = x + 35;
+
+            }
+            x = 1;
+            y = y + 35;
         }
+        
+        spelerX = speler.getX();
+        spelerY = speler.getY();
+        
         g.drawImage(spelerImage, spelerX, spelerY, 30, 30, this);
     } 
-    
-    public void moveCharacterLeft(){
-        boolean collision = false;
-        for(Veld v : maze1Walls){
-            int x = v.getX();
-            if(x == (spelerX - 35)){
-                int y = v.getY();
-                if(y == spelerY){
-                    collision = true;
-                }
-            }
-        }
-        if(collision == false){
-            spelerX = spelerX - 35;
-            spelerImage = speler.setImage("/images/MainCharacterLeft.png");
-            repaint();
-        }
-        else if(collision == true){
-            spelerImage = speler.setImage("/images/MainCharacterLeft.png");
-            repaint();
-        }
+       
+    public void setImage(String path){
+        spelerImage = speler.setImage(path);
     }
-    
-    public void moveCharacterRight(){
-        boolean collision = false;
-        for(Veld v : maze1Walls){
-            int x = v.getX();
-            if(x == (spelerX + 35)){
-                int y = v.getY();
-                if(y == spelerY){
-                    collision = true;
-                }
-            }
-        }
-        if(collision == false){
-            spelerX = spelerX + 35;
-            spelerImage = speler.setImage("/images/MainCharacterRight.png");
-            repaint();
-        }
-        else if (collision == true){
-            spelerImage = speler.setImage("/images/MainCharacterRight.png");
-            repaint();
-        }
-    }
-    
-    public void moveCharacterDown(){
-        boolean collision = false;
-        for(Veld v : maze1Walls){
-            int y = v.getY();
-            if(y == (spelerY + 35)){
-                int x = v.getX();
-                if(x == spelerX){
-                    collision = true;
-                }
-            }
-        }
-        if(collision == false){
-            spelerY = spelerY + 35;
-            spelerImage = speler.setImage("/images/MainCharacterDown.png");
-            repaint();
-        }
-        else if (collision == true){
-            spelerImage = speler.setImage("/images/MainCharacterDown.png");
-            repaint();
-        }
-    }
-    
-    public void moveCharacterUp(){
-        boolean collision = false;
-        for(Veld v : maze1Walls){
-            int y = v.getY();
-            if(y == (spelerY - 35)){
-                int x = v.getX();
-                if(x == spelerX){
-                    collision = true;
-                }
-            }
-        }
-        if(collision == false){
-            spelerY = spelerY - 35;
-            spelerImage = speler.setImage("/images/MainCharacterUp.png");
-            repaint();
-        }
-        else if (collision == true){
-            spelerImage = speler.setImage("/images/MainCharacterUp.png");
-            repaint();
-        }
-    }
-    
 }
 
 
