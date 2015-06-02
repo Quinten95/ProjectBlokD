@@ -5,14 +5,16 @@
 package projectblokd;
 
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Quinten
  */
 public class Muur extends Item{
-    private boolean verwoestbaar;   
-     
+    private boolean verwoestbaar;      
     
 }

@@ -6,7 +6,9 @@ package projectblokd;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 /**
  *
@@ -16,6 +18,8 @@ public class Doolhof extends JComponent{
     
     Speler speler = new Speler();
     private Image spelerImage;
+    private Image wallImage;
+    
     private int spelerX;
     private int spelerY;
     private int[][] maze1 = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -45,7 +49,7 @@ public class Doolhof extends JComponent{
     
     @Override
     public void paintComponent(Graphics g){
-        
+        wallImage = this.setWallImage("/images/Wall.jpg");
         int x = 1;
         int y = 1;
         for(int i = 0; i < 12; i++){
@@ -53,7 +57,7 @@ public class Doolhof extends JComponent{
                 if(maze1[i][j] == 1){
                     Veld v = new Veld(x, y, true);
                     v.fillMaze1Fields(v);
-                    g.fillRect(x, y, 35, 35);
+                    g.drawImage(wallImage, x, y, 35, 35, this);
                 }
                 else{
                     Veld v = new Veld(x, y, false);
@@ -74,6 +78,17 @@ public class Doolhof extends JComponent{
        
     public void setImage(String path){
         spelerImage = speler.setImage(path);
+    }
+    
+    public BufferedImage setWallImage(String path){
+        BufferedImage image = null;
+        try{
+            image = ImageIO.read(this.getClass().getResource(path));
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return image;
     }
 }
 
