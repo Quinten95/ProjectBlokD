@@ -18,8 +18,7 @@ public class Doolhof extends JComponent{
     
     Speler speler;
     private Image spelerImage;
-    private Image wallImage;
-    
+    private Image wallImage;    
     private int spelerX;
     private int spelerY;
     private int[][] maze1 = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -80,7 +79,7 @@ public class Doolhof extends JComponent{
     private void createSpeler(){
         speler = new Speler();
         spelerImage = speler.setImage("/images/MainCharacterRight.png");
-        speler.setMyField(bord[2][2]);
+        speler.setMyField(bord[1][1]);
     }
     
     public void paintMaze(){
@@ -90,7 +89,13 @@ public class Doolhof extends JComponent{
     @Override
     public void paintComponent(Graphics g){
         wallImage = this.setWallImage("/images/Wall.jpg");
-        
+        for(int y = 0; y < 12; y++){
+            for(int x = 0; x < 27; x++){
+                if(bord[y][x].getIsWall()){
+                    g.drawImage(wallImage, bord[y][x].getX(), bord[y][x].getY(), 35, 35, this);
+                }
+            }
+        }
         
         spelerX = speler.getX();
         spelerY = speler.getY();

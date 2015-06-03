@@ -53,6 +53,22 @@ public class Veld {
     public boolean getIsWall(){
         return isWall;
     }
+    
+    public Veld getRightField(){
+        return rightField;
+    }
+    
+    public Veld getLeftField(){
+        return leftField;
+    }
+    
+    public Veld getUpField(){
+        return upField;
+    }
+    
+    public Veld getDownField(){
+        return downField;
+    }
         
     public void moveItem(Item i){
         

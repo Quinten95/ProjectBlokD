@@ -33,6 +33,8 @@ public class Speler extends Item {
     
     public void setMyField(Veld v){
         myField = v;
+        setX();
+        setY();
     }
     
     public int getX(){
@@ -41,19 +43,23 @@ public class Speler extends Item {
     public int getY(){
         return y;
     }
-    public void setX(int x){
-        Speler.x = x;
+    public void setX(){
+        Speler.x = myField.getX();
     }
-    public void setY(int y){
-        Speler.y = y;
+    public void setY(){
+        Speler.y = myField.getY();
     }
     
     public void moveLeft(){
-       
+       if(myField.getLeftField().getIsWall() == false){
+           myField = myField.getLeftField();
+       }
     }
     
     public void moveRight(){
-              
+       if(myField.getRightField().getIsWall() == false){
+           setMyField(myField.getRightField());
+       } 
     }
     
     public void moveDown(){
