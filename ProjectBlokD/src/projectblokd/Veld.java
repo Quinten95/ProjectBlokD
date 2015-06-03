@@ -13,8 +13,12 @@ import java.util.ArrayList;
 public class Veld {
     private int x;
     private int y;
-    private boolean isWall;    
-    private static ArrayList<Veld> maze1Fields = new ArrayList<>();
+    private boolean isWall;
+    
+    private Veld rightField;
+    private Veld leftField;
+    private Veld upField;
+    private Veld downField;
     
     public Veld(int x, int y, boolean isWall){
         this.x = x;
@@ -22,21 +26,20 @@ public class Veld {
         this.isWall = isWall;
     }
     
-    public void fillMaze1Fields(Veld v){
-        maze1Fields.add(v);
+    public void setRightField(Veld v){
+        this.rightField = v;
     }
     
-    public ArrayList getMaze1Fields(){
-        return maze1Fields;
+    public void setLeftField(Veld v){
+        this.leftField = v;
     }
     
-    public Veld getMaze1FieldAt(int x, int y){
-        for(Veld v : maze1Fields){
-            if(x == v.getX() && y == v.getY()){
-                return v;
-            }            
-        }
-        return null;
+    public void setUpField(Veld v){
+       this.upField = v;
+    }
+    
+    public void setDownField(Veld v){
+        this.downField = v;
     }
     
     public int getX(){
