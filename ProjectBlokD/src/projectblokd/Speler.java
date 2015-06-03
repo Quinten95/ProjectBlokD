@@ -57,9 +57,7 @@ public class Speler extends Item {
     }
     
     public void moveRight(){
-       if(myField.getRightField().getIsWall() == false){
-           setMyField(myField.getRightField());
-       } 
+        
     }
     
     public void moveDown(){
