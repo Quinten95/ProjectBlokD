@@ -14,59 +14,62 @@ import javax.swing.ImageIcon;
  * @author Quinten
  */
 public class Speler extends Item {
+
     private int stappen;
     private int ammo;
     private static int x;
     private static int y;
     private Veld myField;
-    
-    public BufferedImage setImage(String path){
+
+    public BufferedImage setImage(String path) {
         BufferedImage image = null;
-        try{
+        try {
             image = ImageIO.read(this.getClass().getResource(path));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return image;
     }
-    
-    public void setMyField(Veld v){
+
+    public void setMyField(Veld v) {
         myField = v;
         setX();
         setY();
     }
-    
-    public int getX(){
+
+    public Veld getMyField() {
+        return myField;
+    }
+
+    public int getX() {
         return x;
     }
-    public int getY(){
+
+    public int getY() {
         return y;
     }
-    public void setX(){
+
+    public void setX() {
         Speler.x = myField.getX();
     }
-    public void setY(){
+
+    public void setY() {
         Speler.y = myField.getY();
     }
-    
-    public void moveLeft(){
-       if(myField.getLeftField().getIsWall() == false){
-           myField = myField.getLeftField();
-       }
+
+    public void moveLeft() {
+        setMyField(myField.getLeftField());
     }
-    
-    public void moveRight(){
-       if(myField.getRightField().getIsWall() == false){
-           setMyField(myField.getRightField());
-       } 
+
+    public void moveRight() {
+        setMyField(myField.getRightField());
     }
-    
-    public void moveDown(){
-             
+
+    public void moveDown() {
+        setMyField(myField.getDownField());
     }
-    
-    public void moveUp(){
-              
+
+    public void moveUp() {
+        setMyField(myField.getUpField());
     }
 }

@@ -102,6 +102,30 @@ public class Doolhof extends JComponent{
         
         g.drawImage(spelerImage, spelerX, spelerY, 30, 30, this);
     } 
+    
+    public void moveSpelerRight(){
+        if(speler.getMyField().getRightField().getIsWall() == false){
+            speler.moveRight();
+        }
+    }
+    
+    public void moveSpelerLeft(){
+        if(speler.getMyField().getLeftField().getIsWall() == false){
+            speler.moveLeft();
+        }
+    }
+    
+    public void moveSpelerDown(){
+        if(speler.getMyField().getDownField().getIsWall() == false){
+            speler.moveDown();
+        }
+    }
+    
+    public void moveSpelerUp(){
+        if(speler.getMyField().getUpField().getIsWall() == false){
+            speler.moveUp();
+        }
+    }
        
     public void setImage(String path){
         spelerImage = speler.setImage(path);
