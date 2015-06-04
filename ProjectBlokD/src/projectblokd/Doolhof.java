@@ -212,7 +212,7 @@ public class Doolhof extends JComponent{
         if(speler.getMyField().getRightField().getIsWall() == false){
             speler.moveRight();
         }
-        if(speler.getMyField().getRightField().getHasFriend()){
+        if(speler.getMyField().getHasFriend()){
             level++;
             init();
         }
@@ -222,7 +222,7 @@ public class Doolhof extends JComponent{
         if(speler.getMyField().getLeftField().getIsWall() == false){
             speler.moveLeft();
         }
-         if(speler.getMyField().getLeftField().getHasFriend()){
+         if(speler.getMyField().getHasFriend()){
             level++;
             init();
         }
@@ -232,7 +232,7 @@ public class Doolhof extends JComponent{
         if(speler.getMyField().getDownField().getIsWall() == false){
             speler.moveDown();
         }
-         if(speler.getMyField().getDownField().getHasFriend()){
+         if(speler.getMyField().getHasFriend()){
             level++;
             init();
         }
@@ -242,7 +242,7 @@ public class Doolhof extends JComponent{
         if(speler.getMyField().getUpField().getIsWall() == false){
             speler.moveUp();
         }
-         if(speler.getMyField().getUpField().getHasFriend()){
+         if(speler.getMyField().getHasFriend()){
             level++;
             init();
         }
