@@ -28,6 +28,7 @@ public class Doolhof extends JComponent{
     private Vriend vriend;
     private int vriendX;
     private int vriendY;
+    private Image vriendImage;
     
     
     private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -64,6 +65,7 @@ public class Doolhof extends JComponent{
         setNeighbourFields();
         System.out.println(bord[1][0].getRightField().getY());
         createSpeler();
+        createVriend();
     }
     
     private void fillBord(){
@@ -171,6 +173,17 @@ public class Doolhof extends JComponent{
         }
     }
     
+    private void createVriend(){
+        vriend = new Vriend();
+        switch(level){
+            case 1:
+                vriendImage = vriend.setImage("/images/FriendDown.png");
+                vriend.setMyField(bord[8][25]);
+                bord[8][25].setHasFriend(true);
+                break;
+        }
+    }
+    
     public void paintMaze(){
         repaint();
     }
@@ -187,14 +200,21 @@ public class Doolhof extends JComponent{
         }
         
         spelerX = speler.getX();
-        spelerY = speler.getY();
-        
+        spelerY = speler.getY();        
         g.drawImage(spelerImage, spelerX, spelerY, 30, 30, this);
+        
+        vriendX = vriend.getX();
+        vriendY = vriend.getY();
+        g.drawImage(vriendImage, vriendX, vriendY, 30, 30, this);
     } 
     
     public void moveSpelerRight(){
         if(speler.getMyField().getRightField().getIsWall() == false){
             speler.moveRight();
+        }
+        if(speler.getMyField().getRightField().getHasFriend()){
+            level++;
+            init();
         }
     }
     
@@ -202,17 +222,29 @@ public class Doolhof extends JComponent{
         if(speler.getMyField().getLeftField().getIsWall() == false){
             speler.moveLeft();
         }
+         if(speler.getMyField().getLeftField().getHasFriend()){
+            level++;
+            init();
+        }
     }
     
     public void moveSpelerDown(){
         if(speler.getMyField().getDownField().getIsWall() == false){
             speler.moveDown();
         }
+         if(speler.getMyField().getDownField().getHasFriend()){
+            level++;
+            init();
+        }
     }
     
     public void moveSpelerUp(){
         if(speler.getMyField().getUpField().getIsWall() == false){
             speler.moveUp();
+        }
+         if(speler.getMyField().getUpField().getHasFriend()){
+            level++;
+            init();
         }
     }
        

@@ -20,6 +20,7 @@ public class Speler extends Item {
     private static int x;
     private static int y;
     private Veld myField;
+    private int level;
 
     public BufferedImage setImage(String path) {
         BufferedImage image = null;
@@ -71,5 +72,9 @@ public class Speler extends Item {
 
     public void moveUp() {
         setMyField(myField.getUpField());
+    }
+    
+    public int getLevel(){
+        return level;
     }
 }

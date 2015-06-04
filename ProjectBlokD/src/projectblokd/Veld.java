@@ -15,6 +15,7 @@ public class Veld {
     private int y;
     private boolean isWall;
     private Muur muur;
+    private boolean hasFriend;
     
     private Veld rightField;
     private Veld leftField;
@@ -74,6 +75,14 @@ public class Veld {
     
     public Veld getDownField(){
         return downField;
+    }
+    
+    public void setHasFriend(boolean hasFriend){
+        this.hasFriend = hasFriend;
+    }
+    
+    public boolean getHasFriend(){
+        return hasFriend;
     }
         
     public void moveItem(Item i){

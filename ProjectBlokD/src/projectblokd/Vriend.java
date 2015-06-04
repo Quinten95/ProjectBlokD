@@ -38,7 +38,7 @@ public class Vriend extends Item{
         return y;
     }
     
-    public BufferedImage setFriendImage(String path){
+    public BufferedImage setImage(String path){
         BufferedImage image = null;
         try{
             image = ImageIO.read(this.getClass().getResource(path));
@@ -49,7 +49,4 @@ public class Vriend extends Item{
         return image;
     }
     
-    public void nextLevel(){
-        
-    }
 }
