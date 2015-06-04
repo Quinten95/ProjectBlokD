@@ -40,6 +40,7 @@ public class Doolhof extends JComponent{
     public void init(){
         fillBord();
         setNeighbourFields();
+        System.out.println(bord[1][0].getRightField().getY());
         createSpeler();
     }
     
@@ -62,16 +63,40 @@ public class Doolhof extends JComponent{
     }
     
     public void setNeighbourFields(){
-        for(int y = 0; y < 12; y++){
-            for(int x = 0; x < 27; x++){
-                try{
-                    bord[y][x].setDownField(bord[y+1][x]);
-                    bord[y][x].setUpField(bord[y-1][x]);
-                    bord[y][x].setLeftField(bord[y][x-1]);
-                    bord[y][x].setRightField(bord[y][x+1]);
-                }
-                catch(Exception e){
-                }
+        for(int y = 1; y < 11; y++){
+            for(int x = 1; x < 26; x++){
+                bord[y][x].setDownField(bord[y+1][x]);
+                bord[y][x].setUpField(bord[y-1][x]);
+                bord[y][x].setLeftField(bord[y][x-1]);
+                bord[y][x].setRightField(bord[y][x+1]);           
+            }
+        }
+        for(int y = 0; y < 1; y++){
+            for(int x = 1; x < 26; x++){
+                bord[y][x].setDownField(bord[y+1][x]);
+                bord[y][x].setLeftField(bord[y][x-1]);
+                bord[y][x].setRightField(bord[y][x+1]);           
+            }
+        }
+        for(int y = 11; y < 12; y++){
+            for(int x = 1; x < 26; x++){
+                bord[y][x].setUpField(bord[y-1][x]);
+                bord[y][x].setLeftField(bord[y][x-1]);
+                bord[y][x].setRightField(bord[y][x+1]);           
+            }
+        }
+        for(int y = 1; y < 11; y++){
+            for(int x = 0; x < 1; x++){
+                bord[y][x].setDownField(bord[y+1][x]);
+                bord[y][x].setUpField(bord[y-1][x]);
+                bord[y][x].setRightField(bord[y][x+1]);           
+            }
+        }
+        for(int y = 1; y < 11; y++){
+            for(int x = 26; x < 27; x++){
+                bord[y][x].setDownField(bord[y+1][x]);
+                bord[y][x].setUpField(bord[y-1][x]);
+                bord[y][x].setLeftField(bord[y][x-1]);          
             }
         }
     }
