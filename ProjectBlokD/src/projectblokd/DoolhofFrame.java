@@ -41,21 +41,21 @@ public class DoolhofFrame extends JFrame{
         @Override
         public void keyPressed(KeyEvent evt){
             switch (evt.getKeyCode()){
-                case KeyEvent.VK_DOWN: doolhof.setImage("/images/MainCharacterDown.png");
+                case KeyEvent.VK_DOWN: doolhof.setSpelerImage("/images/MainCharacterDown.png");
                                        doolhof.moveSpelerDown();
                                        doolhof.paintMaze();
                     break;
-                case KeyEvent.VK_UP: doolhof.setImage("/images/MainCharacterUp.png");
+                case KeyEvent.VK_UP: doolhof.setSpelerImage("/images/MainCharacterUp.png");
                                      doolhof.moveSpelerUp();
                                      doolhof.paintMaze();
                     break;
                 case KeyEvent.VK_LEFT:  
-                                       doolhof.setImage("/images/MainCharacterLeft.png");
+                                       doolhof.setSpelerImage("/images/MainCharacterLeft.png");
                                        doolhof.moveSpelerLeft();
                                        doolhof.paintMaze();
                     break;
                 case KeyEvent.VK_RIGHT:                 
-                                        doolhof.setImage("/images/MainCharacterRight.png");
+                                        doolhof.setSpelerImage("/images/MainCharacterRight.png");
                                         doolhof.moveSpelerRight();
                                         doolhof.paintMaze();
                     break;  

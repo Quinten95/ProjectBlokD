@@ -15,6 +15,14 @@ import javax.imageio.ImageIO;
  * @author Quinten
  */
 public class Muur extends Item{
-    private boolean verwoestbaar;      
+    private boolean verwoestbaar;     
+    
+    public void setVerwoestbaar(boolean verwoestbaar){
+        this.verwoestbaar = verwoestbaar;
+    }
+    public boolean getVerwoestbaar(){
+        return verwoestbaar;
+    }
+    
     
 }

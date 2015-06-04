@@ -16,24 +16,46 @@ import javax.swing.JComponent;
  */
 public class Doolhof extends JComponent{
     
-    Speler speler;
-    private Image spelerImage;
-    private Image wallImage;    
+    private Speler speler;
+    private Image spelerImage;  
     private int spelerX;
     private int spelerY;
-    private int[][] maze1 = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                             {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
-                             {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
-                             {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
-                             {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
-                             {1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
-                             {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
-                             {1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-                             {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
-                             {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
-                             {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-                             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
     
+    private Image wallImage;
+    
+    private int level = 1;
+    
+    private Vriend vriend;
+    private int vriendX;
+    private int vriendY;
+    
+    
+    private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                                {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
+                                {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
+                                {1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
+                                {1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                                {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
+                                {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    
+    private int[][] levelTwo = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
+                                {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
+                                {1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
+                                {1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                                {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+
     private Veld[][] bord = new Veld[12][27];
     
     
@@ -47,19 +69,53 @@ public class Doolhof extends JComponent{
     private void fillBord(){
         int x = 1;
         int y = 1;
-        for(int i = 0; i < 12; i++){
-            for(int j = 0; j < 27; j++){
-                if(maze1[i][j] == 1){
-                    bord[i][j] = new Veld(x, y, true);
+        
+        switch (level){
+            
+            case 1:
+                for(int i = 0; i < 12; i++){
+                    for(int j = 0; j < 27; j++){
+                        if(levelOne[i][j] == 1){
+                            bord[i][j] = new Veld(x, y, true);
+                            if(i < 1 || i > 11 || j < 1 || j > 26){
+                                bord[i][j].setMuur(false);
+                            }
+                            else{
+                                bord[i][j].setMuur(true);
+                            }
+                        }
+                        else{
+                            bord[i][j] = new Veld(x, y, false);
+                        }
+                        x = x + 35;
+                    }
+                    x = 1;
+                    y = y + 35;
                 }
-                else{
-                    bord[i][j] = new Veld(x, y, false);
+                break;
+                
+            case 2:
+                for(int i = 0; i < 12; i++){
+                    for(int j = 0; j < 27; j++){
+                        if(levelTwo[i][j] == 1){
+                            bord[i][j] = new Veld(x, y, true);
+                            if(i < 1 || i > 11 || j < 1 || j > 26){
+                                bord[i][j].setMuur(false);
+                            }
+                            else{
+                                bord[i][j].setMuur(true);
+                            }
+                        }
+                        else{
+                            bord[i][j] = new Veld(x, y, false);
+                        }
+                        x = x + 35;
+                    }
+                    x = 1;
+                    y = y + 35;
                 }
-                x = x + 35;
             }
-            x = 1;
-            y = y + 35;
-        }
+       
     }
     
     public void setNeighbourFields(){
@@ -103,8 +159,16 @@ public class Doolhof extends JComponent{
     
     private void createSpeler(){
         speler = new Speler();
-        spelerImage = speler.setImage("/images/MainCharacterRight.png");
-        speler.setMyField(bord[1][1]);
+        switch(level){
+            case 1:            
+                spelerImage = speler.setImage("/images/MainCharacterRight.png");
+                speler.setMyField(bord[1][1]);
+                    break;
+            
+            case 2:
+                spelerImage = speler.setImage("/images/MainCharacterUp.png");
+                speler.setMyField(bord[10][1]);
+        }
     }
     
     public void paintMaze(){
@@ -152,7 +216,7 @@ public class Doolhof extends JComponent{
         }
     }
        
-    public void setImage(String path){
+    public void setSpelerImage(String path){
         spelerImage = speler.setImage(path);
     }
     

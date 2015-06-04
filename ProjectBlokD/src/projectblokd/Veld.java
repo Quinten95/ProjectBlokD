@@ -14,6 +14,7 @@ public class Veld {
     private int x;
     private int y;
     private boolean isWall;
+    private Muur muur;
     
     private Veld rightField;
     private Veld leftField;
@@ -24,6 +25,11 @@ public class Veld {
         this.x = x;
         this.y = y;
         this.isWall = isWall;
+    }
+    
+    public void setMuur(boolean verwoestbaar){ 
+        muur = new Muur();
+        muur.setVerwoestbaar(verwoestbaar);
     }
     
     public void setRightField(Veld v){

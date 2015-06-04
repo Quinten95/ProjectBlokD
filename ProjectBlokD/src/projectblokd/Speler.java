@@ -60,16 +60,10 @@ public class Speler extends Item {
     public void moveLeft() {
         setMyField(myField.getLeftField());
     }
-<<<<<<< HEAD
-
     public void moveRight() {
         setMyField(myField.getRightField());
-=======
-    
-    public void moveRight(){
-        
->>>>>>> 01e60ccc80c79f484fd83106746588b8976ef0aa
     }
+    
 
     public void moveDown() {
         setMyField(myField.getDownField());
