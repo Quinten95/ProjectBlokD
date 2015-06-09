@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class Speler extends Item {
 
-    private int stappen;
+    private int stappen = 0;
     private int ammo;
     private static int x;
     private static int y;
@@ -76,5 +76,13 @@ public class Speler extends Item {
     
     public int getLevel(){
         return level;
+    }
+    
+    public int getStappen(){
+        return stappen;
+    }
+    
+    public void setStappen(int stappen){
+        this.stappen = stappen;
     }
 }

@@ -21,6 +21,7 @@ public class Doolhof extends JComponent{
     private int spelerX;
     private int spelerY;
     
+    
     private Image wallImage;
     
     private int level = 1;
@@ -263,6 +264,7 @@ public class Doolhof extends JComponent{
     public void moveSpelerRight(){
         if(speler.getMyField().getRightField().getIsWall() == false){
             speler.moveRight();
+            speler.setStappen(speler.getStappen() + 1);
         }
         if(speler.getMyField().getHasFriend()){
             level++;
@@ -273,6 +275,7 @@ public class Doolhof extends JComponent{
     public void moveSpelerLeft(){
         if(speler.getMyField().getLeftField().getIsWall() == false){
             speler.moveLeft();
+            speler.setStappen(speler.getStappen() + 1);
         }
          if(speler.getMyField().getHasFriend()){
             level++;
@@ -283,6 +286,7 @@ public class Doolhof extends JComponent{
     public void moveSpelerDown(){
         if(speler.getMyField().getDownField().getIsWall() == false){
             speler.moveDown();
+            speler.setStappen(speler.getStappen() + 1);
         }
          if(speler.getMyField().getHasFriend()){
             level++;
@@ -293,11 +297,16 @@ public class Doolhof extends JComponent{
     public void moveSpelerUp(){
         if(speler.getMyField().getUpField().getIsWall() == false){
             speler.moveUp();
+            speler.setStappen(speler.getStappen() + 1);
         }
          if(speler.getMyField().getHasFriend()){
             level++;
             init();
         }
+    }
+       
+    public int getSpelerStappen(){
+        return speler.getStappen();
     }
        
     public void setSpelerImage(String path){
