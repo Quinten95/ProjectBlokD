@@ -31,7 +31,7 @@ public class Doolhof extends JComponent{
     
     private Image wallImage;
     
-    private int level = 3;
+    private int level = 1;
     
     private Vriend vriend;
     private Image vriendImage;
@@ -255,34 +255,34 @@ public class Doolhof extends JComponent{
         switch(level){
             case 1:
                 bordCheater1.setMyField(bord[6][11]);
-                bord[6][11].setCheater(bordCheater1);
+                bord[6][11].setItem(bordCheater1);
                 
                 bordCheater2.setMyField(bord[5][2]);
-                bord[5][2].setCheater(bordCheater2);
+                bord[5][2].setItem(bordCheater2);
                 
                 bordCheater3.setMyField(bord[2][21]);
-                bord[2][21].setCheater(bordCheater3);
+                bord[2][21].setItem(bordCheater3);
                 break;
             case 2:
                 bordCheater1.setMyField(bord[6][15]);
-                bord[6][15].setCheater(bordCheater1);
+                bord[6][15].setItem(bordCheater1);
                 
                 bordCheater2.setMyField(bord[5][4]);
-                bord[5][4].setCheater(bordCheater2);
+                bord[5][4].setItem(bordCheater2);
                 
                 bordCheater3.setMyField(bord[3][21]);
-                bord[3][21].setCheater(bordCheater3);
+                bord[3][21].setItem(bordCheater3);
                 break;
                 
             case 3:
                 bordCheater1.setMyField(bord[8][11]);
-                bord[8][11].setCheater(bordCheater1);
+                bord[8][11].setItem(bordCheater1);
                 
                 bordCheater2.setMyField(bord[6][1]);
-                bord[6][1].setCheater(bordCheater2);
+                bord[6][1].setItem(bordCheater2);
                 
                 bordCheater3.setMyField(bord[5][17]);
-                bord[5][17].setCheater(bordCheater3);
+                bord[5][17].setItem(bordCheater3);
                 break;
               
         }
@@ -317,23 +317,25 @@ public class Doolhof extends JComponent{
     
     private void activateCheater(){
         try{
-             voidCheater = speler.getMyField().getCheater();
+            if(speler.getMyField().getItem() instanceof Cheater){
+                voidCheater = (Cheater) speler.getMyField().getItem();
+            }
              if(voidCheater.getMyField() == bordCheater1.getMyField()){
-                 cheater1Image = voidCheater.setImage("/images/removedCheater");
+                 cheater1Image = voidCheater.setImage("/images/removedCheater.png");
              }
              if(voidCheater.getMyField() == bordCheater2.getMyField()){
-                 cheater2Image = voidCheater.setImage("/images/removedCheater");
+                 cheater2Image = voidCheater.setImage("/images/removedCheater.png");
              }
              if(voidCheater.getMyField() == bordCheater3.getMyField()){
-                 cheater3Image = voidCheater.setImage("/images/removedCheater");
+                 cheater3Image = voidCheater.setImage("/images/removedCheater.png");
              }
              if(voidCheater.getActivated() == false){
                 speler.setStappen(voidCheater.stappenVooruit(speler.getStappen()));
              }
              voidCheater.setActivated();
-             voidCheater.getMyField().setCheater(voidCheater);
+             voidCheater.getMyField().setItem(voidCheater);
          }
-         catch(NullPointerException e){
+         catch(Exception e){
              //do nothing
          }
     }
