@@ -9,6 +9,7 @@ package projectblokd;
  * @author Quinten
  */
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -81,17 +82,17 @@ public class DoolhofFrame extends JFrame{
         ActionListener listener = new ClickListener();
         btn.addActionListener(listener);
         
-        aantalStappen = new JLabel("Stappen: ");
+        aantalStappen = new JLabel("Stappen: 0");
         
         doolhof.init();
         doolhof.setPreferredSize(new Dimension(950, 500));
         doolhof.paintMaze();
+        doolhof.addKeyListener(new Adapter());
+        doolhof.setFocusable(true);
         
         panel.add(doolhof);       
         panel.add(btn);
         panel.add(aantalStappen);
-        doolhof.addKeyListener(new Adapter());
-        doolhof.setFocusable(true);
         
         add(panel);
     }

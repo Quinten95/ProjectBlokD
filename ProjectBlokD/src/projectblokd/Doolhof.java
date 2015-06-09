@@ -17,18 +17,23 @@ import javax.swing.JComponent;
 public class Doolhof extends JComponent{
     
     private Speler speler;
-    private Image spelerImage;  
-    private int spelerX;
-    private int spelerY;
+    private Image spelerImage;
     
+    private Cheater voidCheater;
+    
+    private Cheater bordCheater1;
+    private Cheater bordCheater2;
+    private Cheater bordCheater3;
+    
+    private Image cheater1Image;
+    private Image cheater2Image;
+    private Image cheater3Image;
     
     private Image wallImage;
     
-    private int level = 1;
+    private int level = 3;
     
     private Vriend vriend;
-    private int vriendX;
-    private int vriendY;
     private Image vriendImage;
     
     
@@ -79,6 +84,7 @@ public class Doolhof extends JComponent{
         setNeighbourFields();
         createSpeler();
         createVriend();
+        createCheaters();
     }
     
     private void fillBord(){
@@ -237,6 +243,51 @@ public class Doolhof extends JComponent{
         }
     }
     
+    private void createCheaters(){
+        bordCheater1 = new Cheater();
+        bordCheater2 = new Cheater();
+        bordCheater3 = new Cheater();
+        
+        cheater1Image = bordCheater1.setImage("/images/cheater.png");
+        cheater2Image = bordCheater2.setImage("/images/cheater.png");
+        cheater3Image = bordCheater3.setImage("/images/cheater.png");
+        
+        switch(level){
+            case 1:
+                bordCheater1.setMyField(bord[6][11]);
+                bord[6][11].setCheater(bordCheater1);
+                
+                bordCheater2.setMyField(bord[5][2]);
+                bord[5][2].setCheater(bordCheater2);
+                
+                bordCheater3.setMyField(bord[2][21]);
+                bord[2][21].setCheater(bordCheater3);
+                break;
+            case 2:
+                bordCheater1.setMyField(bord[6][15]);
+                bord[6][15].setCheater(bordCheater1);
+                
+                bordCheater2.setMyField(bord[5][4]);
+                bord[5][4].setCheater(bordCheater2);
+                
+                bordCheater3.setMyField(bord[3][21]);
+                bord[3][21].setCheater(bordCheater3);
+                break;
+                
+            case 3:
+                bordCheater1.setMyField(bord[8][11]);
+                bord[8][11].setCheater(bordCheater1);
+                
+                bordCheater2.setMyField(bord[6][1]);
+                bord[6][1].setCheater(bordCheater2);
+                
+                bordCheater3.setMyField(bord[5][17]);
+                bord[5][17].setCheater(bordCheater3);
+                break;
+              
+        }
+    }
+    
     public void paintMaze(){
         repaint();
     }
@@ -252,14 +303,40 @@ public class Doolhof extends JComponent{
             }
         }
         
-        spelerX = speler.getX();
-        spelerY = speler.getY();        
-        g.drawImage(spelerImage, spelerX, spelerY, 30, 30, this);
         
-        vriendX = vriend.getX();
-        vriendY = vriend.getY();
-        g.drawImage(vriendImage, vriendX, vriendY, 30, 30, this);
+        g.drawImage(cheater1Image, bordCheater1.getX(), bordCheater1.getY(), 30, 30, this);
+        g.drawImage(cheater2Image, bordCheater2.getX(), bordCheater2.getY(), 30, 30, this);
+        g.drawImage(cheater3Image, bordCheater3.getX(), bordCheater3.getY(), 30, 30, this);
+        
+        g.drawImage(spelerImage, speler.getX(), speler.getY(), 30, 30, this);
+        
+        g.drawImage(vriendImage, vriend.getX(), vriend.getY(), 30, 30, this);
+        
     } 
+    
+    
+    private void activateCheater(){
+        try{
+             voidCheater = speler.getMyField().getCheater();
+             if(voidCheater.getMyField() == bordCheater1.getMyField()){
+                 cheater1Image = voidCheater.setImage("/images/removedCheater");
+             }
+             if(voidCheater.getMyField() == bordCheater2.getMyField()){
+                 cheater2Image = voidCheater.setImage("/images/removedCheater");
+             }
+             if(voidCheater.getMyField() == bordCheater3.getMyField()){
+                 cheater3Image = voidCheater.setImage("/images/removedCheater");
+             }
+             if(voidCheater.getActivated() == false){
+                speler.setStappen(voidCheater.stappenVooruit(speler.getStappen()));
+             }
+             voidCheater.setActivated();
+             voidCheater.getMyField().setCheater(voidCheater);
+         }
+         catch(NullPointerException e){
+             //do nothing
+         }
+    }
     
     public void moveSpelerRight(){
         if(speler.getMyField().getRightField().getIsWall() == false){
@@ -270,6 +347,7 @@ public class Doolhof extends JComponent{
             level++;
             init();
         }
+        activateCheater();
     }
     
     public void moveSpelerLeft(){
@@ -281,6 +359,7 @@ public class Doolhof extends JComponent{
             level++;
             init();
         }
+        activateCheater();
     }
     
     public void moveSpelerDown(){
@@ -292,6 +371,7 @@ public class Doolhof extends JComponent{
             level++;
             init();
         }
+         activateCheater();
     }
     
     public void moveSpelerUp(){
@@ -303,6 +383,7 @@ public class Doolhof extends JComponent{
             level++;
             init();
         }
+         activateCheater();
     }
        
     public int getSpelerStappen(){

@@ -16,6 +16,7 @@ public class Veld {
     private boolean isWall;
     private Muur muur;
     private boolean hasFriend;
+    private Cheater cheater;
     
     private Veld rightField;
     private Veld leftField;
@@ -83,6 +84,13 @@ public class Veld {
     
     public boolean getHasFriend(){
         return hasFriend;
+    }
+    
+    public void setCheater(Cheater c){
+        this.cheater = c;
+    }
+    public Cheater getCheater(){
+        return cheater;
     }
         
     public void moveItem(Item i){
