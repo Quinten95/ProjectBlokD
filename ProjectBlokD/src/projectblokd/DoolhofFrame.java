@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 public class DoolhofFrame extends JFrame{
     
@@ -30,9 +31,15 @@ public class DoolhofFrame extends JFrame{
     class ClickListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            doolhof.init();
-            doolhof.paintMaze();
-            doolhof.requestFocusInWindow();
+            int confirm = JOptionPane.showConfirmDialog(rootPane, "Wilt u het level herstarten?", "Herstart", JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.YES_OPTION){
+                doolhof.init();
+                doolhof.paintMaze();
+                doolhof.requestFocusInWindow();
+            }
+            else{
+                doolhof.requestFocusInWindow();
+            }
             
         }
     }
