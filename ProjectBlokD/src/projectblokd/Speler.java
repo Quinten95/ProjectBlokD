@@ -21,6 +21,9 @@ public class Speler extends Item {
     private static int y;
     private Veld myField;
     private int level;
+    
+    private Cheater voidCheater;
+    private int cheaterID;
 
     public BufferedImage setImage(String path) {
         BufferedImage image = null;
@@ -58,20 +61,41 @@ public class Speler extends Item {
         Speler.y = myField.getY();
     }
 
-    public void moveLeft() {
-        setMyField(myField.getLeftField());
+    private int checkForCheater(){
+        try{
+            if(this.getMyField().getCheater().getActivated() == false){
+                cheaterID = this.getMyField().getCheaterID();
+                this.stappen = this.stappen + 5;
+                return cheaterID;
+            }
+            else{
+                return -1;
+            }
+         }
+         catch(NullPointerException e){
+             return -1;
+         }
     }
-    public void moveRight() {
+    
+    public int moveLeft() {
+        setMyField(myField.getLeftField());
+        return checkForCheater();
+    }
+    
+    public int moveRight() {
         setMyField(myField.getRightField());
+        return checkForCheater();
     }
     
 
-    public void moveDown() {
+    public int moveDown() {
         setMyField(myField.getDownField());
+        return checkForCheater();
     }
 
-    public void moveUp() {
+    public int moveUp() {
         setMyField(myField.getUpField());
+        return checkForCheater();
     }
     
     public int getLevel(){

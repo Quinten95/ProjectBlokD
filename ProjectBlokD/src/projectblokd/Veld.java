@@ -22,6 +22,7 @@ public class Veld {
     private Veld leftField;
     private Veld upField;
     private Veld downField;
+    private int cheaterID;
     
     public Veld(int x, int y, boolean isWall){
         this.x = x;
@@ -86,11 +87,16 @@ public class Veld {
         return hasFriend;
     }
     
-    public void setCheater(Cheater c){
+    public void setCheater(Cheater c, int id){
+        this.cheaterID = id;
         this.cheater = c;
     }
     public Cheater getCheater(){
         return cheater;
+    }
+    
+    public int getCheaterID(){
+        return cheaterID;
     }
         
     public void moveItem(Item i){
