@@ -136,9 +136,8 @@ public class DoolhofFrame extends JFrame {
         informationPanel.add(fillPanel4);
         
         informationPanel.setPreferredSize(new Dimension(10, 70));
-        doolhofPanel.setPreferredSize(new Dimension(10, 100));
         
-        mainPanel.add(doolhofPanel, BorderLayout.NORTH);
+        mainPanel.add(doolhofPanel, BorderLayout.CENTER);
         mainPanel.add(informationPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
