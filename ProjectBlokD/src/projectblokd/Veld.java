@@ -92,18 +92,15 @@ public class Veld {
         return hasFriend;
     }
     
-<<<<<<< HEAD
-    public void setCheater(Cheater c, int id){
-        this.cheaterID = id;
-        this.cheater = c;
-    }
     public Cheater getCheater(){
         return cheater;
-=======
-    public void setItem(Item i){
+    }
+    
+    public void setItem(Item i, int id){
         this.item = i;
         if(i instanceof Cheater){
             this.cheater = (Cheater) i; 
+            this.cheaterID = id;
         }
         if(i instanceof Bazooka){
             this.bazooka = (Bazooka) i; 
@@ -111,10 +108,7 @@ public class Veld {
         if(i instanceof Helper){
             this.helper = (Helper) i; 
         }
-    }
-    public Item getItem(){
-        return item;
->>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
+    
     }
     
     public int getCheaterID(){
