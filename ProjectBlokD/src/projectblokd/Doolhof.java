@@ -20,7 +20,7 @@ public class Doolhof extends JComponent {
     private Speler speler;
     private Image spelerImage;
     
-    private int cheaterID;
+    private int itemID;
     private Cheater cheater1;
     private Cheater cheater2;
     private Cheater cheater3;
@@ -30,11 +30,12 @@ public class Doolhof extends JComponent {
     
     private Image wallImage;
     
-    private int level = 1;
+    private int level = 3;
     
     private Vriend vriend;
     private Image vriendImage;
     
+    private int bazookaID;
     private Bazooka bazooka1;
     private Bazooka bazooka2;
     private Image bazooka1Image;
@@ -265,8 +266,8 @@ public class Doolhof extends JComponent {
                 cheater1.setMyField(bord[6][15]);
                 bord[6][15].setItem(cheater1, 1);
 
-                cheater2.setMyField(bord[5][4]);
-                bord[5][4].setItem(cheater2, 2);
+                cheater2.setMyField(bord[5][3]);
+                bord[5][3].setItem(cheater2, 2);
 
                 cheater3.setMyField(bord[3][21]);
                 bord[3][21].setItem(cheater3, 3);
@@ -274,14 +275,14 @@ public class Doolhof extends JComponent {
                 break;
 
             case 3:
-                cheater1.setMyField(bord[8][11]);
-                bord[8][11].setItem(cheater1, 1);
+                cheater1.setMyField(bord[5][8]);
+                bord[5][8].setItem(cheater1, 1);
 
                 cheater2.setMyField(bord[6][1]);
                 bord[6][1].setItem(cheater2, 2);
 
-                cheater3.setMyField(bord[5][17]);
-                bord[5][17].setItem(cheater3, 3);
+                cheater3.setMyField(bord[2][25]);
+                bord[2][25].setItem(cheater3, 3);
 
                 break;
         }
@@ -292,26 +293,63 @@ public class Doolhof extends JComponent {
         bazooka2 = new Bazooka();
         
         bazooka1Image = bazooka1.setImage("/images/bazooka.png");
+        bazooka2Image = bazooka2.setImage("/images/bazooka.png");
         
         switch(level){
             case 1:
                 bazooka1.setMyField(bord[10][13]);
-                bord[10][13].setItem(bazooka1, 1);
+                bord[10][13].setItem(bazooka1, 4);
+                
+                bazooka2.setMyField(bord[1][14]);
+                bord[1][14].setItem(bazooka2, 5);
+                break;
+            case 2:
+                bazooka1.setMyField(bord[10][6]);
+                bord[10][6].setItem(bazooka1, 4);
+                
+                bazooka2.setMyField(bord[1][11]);
+                bord[1][11].setItem(bazooka2, 5);
+                break;
+            case 3:
+                bazooka1.setMyField(bord[10][3]);
+                bord[10][3].setItem(bazooka1, 4);
+                
+                bazooka2.setMyField(bord[4][25]);
+                bord[4][25].setItem(bazooka2, 5);
+                break;
+        }
+    }
+    
+    public void fireBazooka(){
+        if(speler.getAmmo() > 0){
+            Bazooka firedBazooka = new Bazooka();
+            firedBazooka.setMyField(speler.getMyField());
+            
+            firedBazooka.fireBazooka(speler.getLastDirection());
+            speler.setAmmo(speler.getAmmo() - 1);
         }
     }
 
     public void paintMaze() {
-        if (cheaterID == 1 && cheater1.getActivated() == false) {
+        if (itemID == 1 && cheater1.getActivated() == false) {
             cheater1.setActivated();
-            cheater1Image = cheater1.setImage("/images/removedCheater.png");
+            cheater1Image = cheater1.setImage("/images/removedItem.png");
         }
-        if (cheaterID == 2 && cheater2.getActivated() == false) {
+        if (itemID == 2 && cheater2.getActivated() == false) {
             cheater2.setActivated();
-            cheater2Image = cheater2.setImage("/images/removedCheater.png");
+            cheater2Image = cheater2.setImage("/images/removedItem.png");
         }
-        if (cheaterID == 3 && cheater3.getActivated() == false) {
+        if(itemID == 3 && cheater3.getActivated() == false) {
             cheater3.setActivated();
-            cheater3Image = cheater3.setImage("/images/removedCheater.png");
+            cheater3Image = cheater3.setImage("/images/removedItem.png");
+        }
+        if(itemID == 4 && bazooka1.getActivated() == false){
+            bazooka1.setActivated();
+            bazooka1Image = bazooka1.setImage("/images/removedItem.png");
+        }
+        if(itemID == 5 && bazooka2.getActivated() == false){
+            bazooka2.setActivated();
+            bazooka2Image = bazooka2.setImage("/images/removedItem.png");
         }
         repaint();
     }
@@ -333,7 +371,8 @@ public class Doolhof extends JComponent {
         g.drawImage(cheater3Image, cheater3.getX(), cheater3.getY(), 30, 30, this);
         
         g.drawImage(bazooka1Image, bazooka1.getX(), bazooka1.getY(), 30, 30, this);
-
+        g.drawImage(bazooka2Image, bazooka2.getX(), bazooka2.getY(), 30, 30, this);
+        
         g.drawImage(spelerImage, speler.getX(), speler.getY(), 30, 30, this);
 
         g.drawImage(vriendImage, vriend.getX(), vriend.getY(), 30, 30, this);
@@ -342,46 +381,49 @@ public class Doolhof extends JComponent {
 
     public void moveSpelerRight() {
         if (speler.getMyField().getRightField().getIsWall() == false) {
-            cheaterID = speler.moveRight();
-            speler.setStappen(speler.getStappen() + 1);
+            itemID = speler.moveRight();
+            
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
             init();
         }
+        speler.setLastDirection("right");
     }
 
     public void moveSpelerLeft() {
         if (speler.getMyField().getLeftField().getIsWall() == false) {
-            cheaterID = speler.moveLeft();
-            speler.setStappen(speler.getStappen() + 1);
+            itemID = speler.moveLeft();
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
             init();
         }
+        speler.setLastDirection("left");
     }
 
     public void moveSpelerDown() {
         if (speler.getMyField().getDownField().getIsWall() == false) {
-            cheaterID = speler.moveDown();
-            speler.setStappen(speler.getStappen() + 1);
+            itemID = speler.moveDown();
+            
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
             init();
         }
+        speler.setLastDirection("down");
     }
 
     public void moveSpelerUp() {
         if (speler.getMyField().getUpField().getIsWall() == false) {
-            cheaterID = speler.moveUp();
-            speler.setStappen(speler.getStappen() + 1);
+            itemID = speler.moveUp();
+            
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
             init();
         }
+        speler.setLastDirection("up");
     }
 
     public int getSpelerStappen() {

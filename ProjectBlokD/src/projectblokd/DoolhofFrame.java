@@ -87,6 +87,10 @@ public class DoolhofFrame extends JFrame {
                     doolhof.paintMaze();
                     displayLabels();
                     break;
+                case KeyEvent.VK_SPACE:
+                    doolhof.fireBazooka();
+                    doolhof.paintMaze();
+                    displayLabels();
             };
         }
     }

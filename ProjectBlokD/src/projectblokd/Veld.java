@@ -26,7 +26,7 @@ public class Veld {
     private Veld leftField;
     private Veld upField;
     private Veld downField;
-    private int cheaterID;
+    private int ItemID;
     
     public Veld(int x, int y, boolean isWall){
         this.x = x;
@@ -39,7 +39,9 @@ public class Veld {
         muur = new Muur();
         muur.setVerwoestbaar(verwoestbaar);
     }
-    
+    public Muur getMuur(){
+        return muur;
+    }
     public void setRightField(Veld v){
         this.rightField = v;
     }
@@ -66,6 +68,10 @@ public class Veld {
     
     public boolean getIsWall(){
         return isWall;
+    }
+    
+    public void setIsWall(boolean isWall){
+        this.isWall = isWall;
     }
     
     public Veld getRightField(){
@@ -96,11 +102,15 @@ public class Veld {
         return cheater;
     }
     
+    public Bazooka getBazooka(){
+        return bazooka;
+    }
     public void setItem(Item i, int id){
         this.item = i;
+        this.ItemID = id;
+        
         if(i instanceof Cheater){
-            this.cheater = (Cheater) i; 
-            this.cheaterID = id;
+            this.cheater = (Cheater) i;
         }
         if(i instanceof Bazooka){
             this.bazooka = (Bazooka) i; 
@@ -111,8 +121,8 @@ public class Veld {
     
     }
     
-    public int getCheaterID(){
-        return cheaterID;
+    public int getItemID(){
+        return ItemID;
     }
         
     public void moveItem(Item i){

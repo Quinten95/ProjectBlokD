@@ -17,6 +17,7 @@ public class Bazooka extends Item {
     private Veld myField;
     private int x;
     private int y;
+    private String lastDirection;
 
     public void setMyField(Veld v) {
         this.myField = v;
@@ -42,6 +43,47 @@ public class Bazooka extends Item {
 
     public int getX() {
         return x;
+    }
+
+    public void fireBazooka(String direction) {
+        this.lastDirection = direction;
+        switch (lastDirection) {
+            case "left":
+                while (getMyField().getLeftField().getIsWall() == false) {
+                    setMyField(getMyField().getLeftField());
+                }
+                if (getMyField().getLeftField().getMuur().getVerwoestbaar()) {
+                    getMyField().getLeftField().setIsWall(false);
+                }
+                break;
+                
+            case "right":
+                while (getMyField().getRightField().getIsWall() == false) {
+                    setMyField(getMyField().getRightField());
+                }
+                if (getMyField().getRightField().getMuur().getVerwoestbaar()) {
+                    getMyField().getRightField().setIsWall(false);
+                }
+                break;
+                
+            case "up":
+                while (getMyField().getUpField().getIsWall() == false) {
+                    setMyField(getMyField().getUpField());
+                }
+                if (getMyField().getUpField().getMuur().getVerwoestbaar()) {
+                    getMyField().getUpField().setIsWall(false);
+                }
+                break;
+                
+            case "down":
+                while (getMyField().getDownField().getIsWall() == false) {
+                    setMyField(getMyField().getDownField());
+                }
+                if (getMyField().getDownField().getMuur().getVerwoestbaar()) {
+                    getMyField().getDownField().setIsWall(false);
+                }
+                break;
+        }
     }
 
     public BufferedImage setImage(String path) {

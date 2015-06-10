@@ -16,12 +16,12 @@ import javax.swing.ImageIcon;
 public class Speler extends Item {
 
     private int stappen = 0;
-    private int ammo;
+    private int ammo = 0;
     private static int x;
     private static int y;
     private Veld myField;
     private int level;
-    private int cheaterID;
+    private int itemID;
     private String lastDirection;
 
     public BufferedImage setImage(String path) {
@@ -63,9 +63,21 @@ public class Speler extends Item {
     private int checkForCheater() {
         try {
             if (this.getMyField().getCheater().getActivated() == false) {
-                cheaterID = this.getMyField().getCheaterID();
-                this.stappen = this.stappen + 5;
-                return cheaterID;
+                itemID = this.getMyField().getItemID();
+                return itemID;
+            } else {
+                return -1;
+            }
+        } catch (NullPointerException e) {
+            return -1;
+        }
+    }
+
+    private int checkForBazooka() {
+        try {
+            if (this.getMyField().getBazooka().getActivated() == false) {
+                itemID = this.getMyField().getItemID();
+                return itemID;
             } else {
                 return -1;
             }
@@ -76,26 +88,62 @@ public class Speler extends Item {
 
     public int moveLeft() {
         setMyField(myField.getLeftField());
-        lastDirection = "left";
-        return checkForCheater();
+        
+        this.stappen++;
+        if (checkForCheater() > 0) {
+            this.stappen = this.stappen + 4;
+            return checkForCheater();
+        }
+        if (checkForBazooka() > 0) {
+            this.ammo++;
+            return checkForBazooka();
+        }
+        return -1;
     }
 
     public int moveRight() {
         setMyField(myField.getRightField());
-        lastDirection = "right";
-        return checkForCheater();
+        
+        this.stappen++;
+        if (checkForCheater() > 0) {
+            this.stappen = this.stappen + 4;
+            return checkForCheater();
+        }
+        if (checkForBazooka() > 0) {
+            this.ammo++;
+            return checkForBazooka();
+        }
+        return -1;
     }
 
     public int moveDown() {
         setMyField(myField.getDownField());
-        lastDirection = "down";
-        return checkForCheater();
+        
+        this.stappen++;
+        if (checkForCheater() > 0) {
+            this.stappen = this.stappen + 4;
+            return checkForCheater();
+        }
+        if (checkForBazooka() > 0) {
+            this.ammo++;
+            return checkForBazooka();
+        }
+        return -1;
     }
 
     public int moveUp() {
         setMyField(myField.getUpField());
-        lastDirection = "up";
-        return checkForCheater();
+       
+        this.stappen++;
+        if (checkForCheater() > 0) {
+            this.stappen = this.stappen + 4;
+            return checkForCheater();
+        }
+        if (checkForBazooka() > 0) {
+            this.ammo++;
+            return checkForBazooka();
+        }
+        return -1;
     }
 
     public int getLevel() {
@@ -109,16 +157,20 @@ public class Speler extends Item {
     public void setStappen(int stappen) {
         this.stappen = stappen;
     }
-    
-    public String getLastDirection(){
+
+    public String getLastDirection() {
         return lastDirection;
     }
-    
-    public void setAmmo(int ammo){
+
+    public void setAmmo(int ammo) {
         this.ammo = ammo;
     }
-    
-    public int getAmmo(){
+
+    public int getAmmo() {
         return ammo;
+    }
+    
+    public void setLastDirection(String direction){
+        this.lastDirection = direction;
     }
 }
