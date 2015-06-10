@@ -21,9 +21,8 @@ public class Speler extends Item {
     private static int y;
     private Veld myField;
     private int level;
-    
-    private Cheater voidCheater;
     private int cheaterID;
+    private String lastDirection;
 
     public BufferedImage setImage(String path) {
         BufferedImage image = null;
@@ -61,52 +60,57 @@ public class Speler extends Item {
         Speler.y = myField.getY();
     }
 
-    private int checkForCheater(){
-        try{
-            if(this.getMyField().getCheater().getActivated() == false){
+    private int checkForCheater() {
+        try {
+            if (this.getMyField().getCheater().getActivated() == false) {
                 cheaterID = this.getMyField().getCheaterID();
                 this.stappen = this.stappen + 5;
                 return cheaterID;
-            }
-            else{
+            } else {
                 return -1;
             }
-         }
-         catch(NullPointerException e){
-             return -1;
-         }
+        } catch (NullPointerException e) {
+            return -1;
+        }
     }
-    
+
     public int moveLeft() {
         setMyField(myField.getLeftField());
+        lastDirection = "left";
         return checkForCheater();
     }
-    
+
     public int moveRight() {
         setMyField(myField.getRightField());
+        lastDirection = "right";
         return checkForCheater();
     }
-    
 
     public int moveDown() {
         setMyField(myField.getDownField());
+        lastDirection = "down";
         return checkForCheater();
     }
 
     public int moveUp() {
         setMyField(myField.getUpField());
+        lastDirection = "up";
         return checkForCheater();
     }
-    
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
-    
-    public int getStappen(){
+
+    public int getStappen() {
         return stappen;
     }
-    
-    public void setStappen(int stappen){
+
+    public void setStappen(int stappen) {
         this.stappen = stappen;
+    }
+    
+    public String getLastDirection(){
+        return lastDirection;
     }
 }

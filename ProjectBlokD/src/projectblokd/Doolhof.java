@@ -16,56 +16,69 @@ import javax.swing.JComponent;
  * @author Quinten
  */
 public class Doolhof extends JComponent {
-
+    
     private Speler speler;
     private Image spelerImage;
+    
     private int cheaterID;
-    private Cheater bordCheater1;
-    private Cheater bordCheater2;
-    private Cheater bordCheater3;
+    private Cheater cheater1;
+    private Cheater cheater2;
+    private Cheater cheater3;
     private Image cheater1Image;
     private Image cheater2Image;
     private Image cheater3Image;
+    
     private Image wallImage;
+    
     private int level = 1;
+    
     private Vriend vriend;
     private Image vriendImage;
+    
+    private Bazooka bazooka1;
+    private Bazooka bazooka2;
+    private Image bazooka1Image;
+    private Image bazooka2Image;
+    
     private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
-        {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
-        {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
-        {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
-        {1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-        {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
-        {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+                                {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
+                                {1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1},
+                                {1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
+                                {1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                                {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
+                                {1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    
     private int[][] levelTwo = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
-        {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
-        {1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1},
-        {1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1},
-        {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
-        {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+                                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
+                                {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1},
+                                {1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1},
+                                {1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1},
+                                {1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1},
+                                {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1},
+                                {1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    
     private int[][] levelThree = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
-        {1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-        {1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1},
-        {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1},
-        {1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+                                  {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1},
+                                  {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1},
+                                  {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1},
+                                  {1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+                                  {1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1},
+                                  {1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1},
+                                  {1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1},
+                                  {1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
+                                  {1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1},
+                                  {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
+    
     private Veld[][] bord = new Veld[12][27];
 
     public void init() {
@@ -74,6 +87,7 @@ public class Doolhof extends JComponent {
         createSpeler();
         createVriend();
         createCheaters();
+        createBazooka();
     }
 
     private void fillBord() {
@@ -227,65 +241,77 @@ public class Doolhof extends JComponent {
     }
 
     private void createCheaters() {
-        bordCheater1 = new Cheater();
-        bordCheater2 = new Cheater();
-        bordCheater3 = new Cheater();
+        cheater1 = new Cheater();
+        cheater2 = new Cheater();
+        cheater3 = new Cheater();
 
-        cheater1Image = bordCheater1.setImage("/images/cheater.png");
-        cheater2Image = bordCheater2.setImage("/images/cheater.png");
-        cheater3Image = bordCheater3.setImage("/images/cheater.png");
+        cheater1Image = cheater1.setImage("/images/cheater.png");
+        cheater2Image = cheater2.setImage("/images/cheater.png");
+        cheater3Image = cheater3.setImage("/images/cheater.png");
 
         switch (level) {
             case 1:
-                bordCheater1.setMyField(bord[6][11]);
-                bord[6][11].setItem(bordCheater1, 1);
+                cheater1.setMyField(bord[6][11]);
+                bord[6][11].setItem(cheater1, 1);
 
-                bordCheater2.setMyField(bord[5][2]);
-                bord[5][2].setItem(bordCheater2, 2);
+                cheater2.setMyField(bord[5][2]);
+                bord[5][2].setItem(cheater2, 2);
 
-                bordCheater3.setMyField(bord[2][21]);
-                bord[2][21].setItem(bordCheater3, 3);
+                cheater3.setMyField(bord[2][21]);
+                bord[2][21].setItem(cheater3, 3);
                 break;
 
             case 2:
-                bordCheater1.setMyField(bord[6][15]);
-                bord[6][15].setItem(bordCheater1, 1);
+                cheater1.setMyField(bord[6][15]);
+                bord[6][15].setItem(cheater1, 1);
 
-                bordCheater2.setMyField(bord[5][4]);
-                bord[5][4].setItem(bordCheater2, 2);
+                cheater2.setMyField(bord[5][4]);
+                bord[5][4].setItem(cheater2, 2);
 
-                bordCheater3.setMyField(bord[3][21]);
-                bord[3][21].setItem(bordCheater3, 3);
+                cheater3.setMyField(bord[3][21]);
+                bord[3][21].setItem(cheater3, 3);
 
                 break;
 
             case 3:
-                bordCheater1.setMyField(bord[8][11]);
-                bord[8][11].setItem(bordCheater1, 1);
+                cheater1.setMyField(bord[8][11]);
+                bord[8][11].setItem(cheater1, 1);
 
-                bordCheater2.setMyField(bord[6][1]);
-                bord[6][1].setItem(bordCheater2, 2);
+                cheater2.setMyField(bord[6][1]);
+                bord[6][1].setItem(cheater2, 2);
 
-                bordCheater3.setMyField(bord[5][17]);
-                bord[5][17].setItem(bordCheater3, 3);
+                cheater3.setMyField(bord[5][17]);
+                bord[5][17].setItem(cheater3, 3);
 
                 break;
-
+        }
+    }
+    
+    private void createBazooka(){
+        bazooka1 = new Bazooka();
+        bazooka2 = new Bazooka();
+        
+        bazooka1Image = bazooka1.setImage("/images/bazooka.png");
+        
+        switch(level){
+            case 1:
+                bazooka1.setMyField(bord[10][13]);
+                bord[10][13].setItem(bazooka1, 1);
         }
     }
 
     public void paintMaze() {
-        if (cheaterID == 1 && bordCheater1.getActivated() == false) {
-            bordCheater1.setActivated();
-            cheater1Image = bordCheater1.setImage("/images/removedCheater.png");
+        if (cheaterID == 1 && cheater1.getActivated() == false) {
+            cheater1.setActivated();
+            cheater1Image = cheater1.setImage("/images/removedCheater.png");
         }
-        if (cheaterID == 2 && bordCheater2.getActivated() == false) {
-            bordCheater2.setActivated();
-            cheater2Image = bordCheater2.setImage("/images/removedCheater.png");
+        if (cheaterID == 2 && cheater2.getActivated() == false) {
+            cheater2.setActivated();
+            cheater2Image = cheater2.setImage("/images/removedCheater.png");
         }
-        if (cheaterID == 3 && bordCheater3.getActivated() == false) {
-            bordCheater3.setActivated();
-            cheater3Image = bordCheater3.setImage("/images/removedCheater.png");
+        if (cheaterID == 3 && cheater3.getActivated() == false) {
+            cheater3.setActivated();
+            cheater3Image = cheater3.setImage("/images/removedCheater.png");
         }
         repaint();
     }
@@ -302,9 +328,11 @@ public class Doolhof extends JComponent {
         }
 
 
-        g.drawImage(cheater1Image, bordCheater1.getX(), bordCheater1.getY(), 30, 30, this);
-        g.drawImage(cheater2Image, bordCheater2.getX(), bordCheater2.getY(), 30, 30, this);
-        g.drawImage(cheater3Image, bordCheater3.getX(), bordCheater3.getY(), 30, 30, this);
+        g.drawImage(cheater1Image, cheater1.getX(), cheater1.getY(), 30, 30, this);
+        g.drawImage(cheater2Image, cheater2.getX(), cheater2.getY(), 30, 30, this);
+        g.drawImage(cheater3Image, cheater3.getX(), cheater3.getY(), 30, 30, this);
+        
+        g.drawImage(bazooka1Image, bazooka1.getX(), bazooka1.getY(), 30, 30, this);
 
         g.drawImage(spelerImage, speler.getX(), speler.getY(), 30, 30, this);
 
