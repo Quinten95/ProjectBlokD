@@ -30,7 +30,7 @@ public class Doolhof extends JComponent {
     
     private Image wallImage;
     
-    private int level = 3;
+    private int level = 1;
     
     private Vriend vriend;
     private Image vriendImage;
