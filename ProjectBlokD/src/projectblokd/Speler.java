@@ -113,4 +113,12 @@ public class Speler extends Item {
     public String getLastDirection(){
         return lastDirection;
     }
+    
+    public void setAmmo(int ammo){
+        this.ammo = ammo;
+    }
+    
+    public int getAmmo(){
+        return ammo;
+    }
 }

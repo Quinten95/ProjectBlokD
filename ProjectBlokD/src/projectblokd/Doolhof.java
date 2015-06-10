@@ -388,6 +388,9 @@ public class Doolhof extends JComponent {
         return speler.getStappen();
     }
 
+    public int getSpelerAmmo(){
+        return speler.getAmmo();
+    }
     public void setSpelerImage(String path) {
         spelerImage = speler.setImage(path);
     }

@@ -8,8 +8,10 @@ package projectblokd;
  *
  * @author Quinten
  */
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,11 +20,23 @@ import javax.swing.*;
 
 public class DoolhofFrame extends JFrame {
 
-    private JPanel panel = new JPanel();
+    private JPanel mainPanel;
+    private JPanel doolhofPanel;
+    private JPanel informationPanel;
+    private JPanel buttonPanel;
+    private JPanel stappenPanel;
+    private JPanel ammoPanel;
+    
+    private JPanel fillPanel;
+    private JPanel fillPanel2;
+    private JPanel fillPanel3;
+    private JPanel fillPanel4;
+    
     private JButton btn;
     Doolhof doolhof = new Doolhof();
     private JLabel aantalStappen;
-
+    private JLabel ammo;
+    
     public DoolhofFrame() {
         initComponents();
         setResizable(false);
@@ -53,51 +67,80 @@ public class DoolhofFrame extends JFrame {
                     doolhof.setSpelerImage("/images/MainCharacterDown.png");
                     doolhof.moveSpelerDown();
                     doolhof.paintMaze();
-                    displayStappen();
+                    displayLabels();
                     break;
                 case KeyEvent.VK_UP:
                     doolhof.setSpelerImage("/images/MainCharacterUp.png");
                     doolhof.moveSpelerUp();
                     doolhof.paintMaze();
-                    displayStappen();
+                    displayLabels();
                     break;
                 case KeyEvent.VK_LEFT:
                     doolhof.setSpelerImage("/images/MainCharacterLeft.png");
                     doolhof.moveSpelerLeft();
                     doolhof.paintMaze();
-                    displayStappen();
+                    displayLabels();
                     break;
                 case KeyEvent.VK_RIGHT:
                     doolhof.setSpelerImage("/images/MainCharacterRight.png");
                     doolhof.moveSpelerRight();
                     doolhof.paintMaze();
-                    displayStappen();
+                    displayLabels();
                     break;
             };
         }
     }
 
-    public void displayStappen() {
+    public void displayLabels() {
         aantalStappen.setText("Stappen: " + doolhof.getSpelerStappen());
+        ammo.setText("Ammo: " + doolhof.getSpelerAmmo());
     }
 
     public final void initComponents() {
-        btn = new JButton("Restart");
-        ActionListener listener = new ClickListener();
-        btn.addActionListener(listener);
-
-        aantalStappen = new JLabel("Stappen: 0");
-
         doolhof.init();
         doolhof.setPreferredSize(new Dimension(950, 500));
         doolhof.paintMaze();
         doolhof.addKeyListener(new Adapter());
         doolhof.setFocusable(true);
+        
+        btn = new JButton("Restart");
+        ActionListener listener = new ClickListener();
+        btn.addActionListener(listener);
 
-        panel.add(doolhof);
-        panel.add(btn);
-        panel.add(aantalStappen);
+        aantalStappen = new JLabel("Stappen: 0");
+        ammo = new JLabel("Ammo: 0");
+        
+        mainPanel = new JPanel(new BorderLayout());
+        doolhofPanel = new JPanel();
+        informationPanel = new JPanel(new GridLayout(1, 7));
+        buttonPanel = new JPanel();
+        stappenPanel = new JPanel();
+        ammoPanel = new JPanel();
+        
+        fillPanel = new JPanel();
+        fillPanel2 = new JPanel();
+        fillPanel3 = new JPanel();
+        fillPanel4 = new JPanel();
+        
+        doolhofPanel.add(doolhof);
+        stappenPanel.add(aantalStappen);
+        buttonPanel.add(btn);
+        ammoPanel.add(ammo);
+        
+        informationPanel.add(fillPanel);
+        informationPanel.add(ammoPanel);
+        informationPanel.add(fillPanel2);
+        informationPanel.add(buttonPanel);
+        informationPanel.add(fillPanel3);
+        informationPanel.add(stappenPanel);
+        informationPanel.add(fillPanel4);
+        
+        informationPanel.setPreferredSize(new Dimension(10, 70));
+        doolhofPanel.setPreferredSize(new Dimension(10, 100));
+        
+        mainPanel.add(doolhofPanel, BorderLayout.NORTH);
+        mainPanel.add(informationPanel, BorderLayout.SOUTH);
 
-        add(panel);
+        add(mainPanel);
     }
 }
