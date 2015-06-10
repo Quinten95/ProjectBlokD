@@ -255,6 +255,7 @@ public class Doolhof extends JComponent{
         switch(level){
             case 1:
                 bordCheater1.setMyField(bord[6][11]);
+<<<<<<< HEAD
                 bord[6][11].setCheater(bordCheater1, 1);
                 
                 bordCheater2.setMyField(bord[5][2]);
@@ -262,10 +263,20 @@ public class Doolhof extends JComponent{
                 
                 bordCheater3.setMyField(bord[2][21]);
                 bord[2][21].setCheater(bordCheater3, 3);
+=======
+                bord[6][11].setItem(bordCheater1);
+                
+                bordCheater2.setMyField(bord[5][2]);
+                bord[5][2].setItem(bordCheater2);
+                
+                bordCheater3.setMyField(bord[2][21]);
+                bord[2][21].setItem(bordCheater3);
+>>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
                 break;
                 
             case 2:
                 bordCheater1.setMyField(bord[6][15]);
+<<<<<<< HEAD
                 bord[6][15].setCheater(bordCheater1, 1);
                 
                 bordCheater2.setMyField(bord[5][4]);
@@ -273,10 +284,20 @@ public class Doolhof extends JComponent{
                 
                 bordCheater3.setMyField(bord[3][21]);
                 bord[3][21].setCheater(bordCheater3, 3);
+=======
+                bord[6][15].setItem(bordCheater1);
+                
+                bordCheater2.setMyField(bord[5][4]);
+                bord[5][4].setItem(bordCheater2);
+                
+                bordCheater3.setMyField(bord[3][21]);
+                bord[3][21].setItem(bordCheater3);
+>>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
                 break;
                 
             case 3:
                 bordCheater1.setMyField(bord[8][11]);
+<<<<<<< HEAD
                 bord[8][11].setCheater(bordCheater1, 1);
                 
                 bordCheater2.setMyField(bord[6][1]);
@@ -284,6 +305,15 @@ public class Doolhof extends JComponent{
                 
                 bordCheater3.setMyField(bord[5][17]);
                 bord[5][17].setCheater(bordCheater3, 3);
+=======
+                bord[8][11].setItem(bordCheater1);
+                
+                bordCheater2.setMyField(bord[6][1]);
+                bord[6][1].setItem(bordCheater2);
+                
+                bordCheater3.setMyField(bord[5][17]);
+                bord[5][17].setItem(bordCheater3);
+>>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
                 break;
               
         }
@@ -328,7 +358,34 @@ public class Doolhof extends JComponent{
     } 
     
     
+<<<<<<< HEAD
     
+=======
+    private void activateCheater(){
+        try{
+            if(speler.getMyField().getItem() instanceof Cheater){
+                voidCheater = (Cheater) speler.getMyField().getItem();
+            }
+             if(voidCheater.getMyField() == bordCheater1.getMyField()){
+                 cheater1Image = voidCheater.setImage("/images/removedCheater.png");
+             }
+             if(voidCheater.getMyField() == bordCheater2.getMyField()){
+                 cheater2Image = voidCheater.setImage("/images/removedCheater.png");
+             }
+             if(voidCheater.getMyField() == bordCheater3.getMyField()){
+                 cheater3Image = voidCheater.setImage("/images/removedCheater.png");
+             }
+             if(voidCheater.getActivated() == false){
+                speler.setStappen(voidCheater.stappenVooruit(speler.getStappen()));
+             }
+             voidCheater.setActivated();
+             voidCheater.getMyField().setItem(voidCheater);
+         }
+         catch(Exception e){
+             //do nothing
+         }
+    }
+>>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
     
     public void moveSpelerRight(){
         if(speler.getMyField().getRightField().getIsWall() == false){

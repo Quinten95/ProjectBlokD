@@ -17,6 +17,10 @@ public class Veld {
     private Muur muur;
     private boolean hasFriend;
     private Cheater cheater;
+    private Bazooka bazooka;
+    private Helper helper;
+    
+    private Item item;
     
     private Veld rightField;
     private Veld leftField;
@@ -28,6 +32,7 @@ public class Veld {
         this.x = x;
         this.y = y;
         this.isWall = isWall;
+        
     }
     
     public void setMuur(boolean verwoestbaar){ 
@@ -87,12 +92,29 @@ public class Veld {
         return hasFriend;
     }
     
+<<<<<<< HEAD
     public void setCheater(Cheater c, int id){
         this.cheaterID = id;
         this.cheater = c;
     }
     public Cheater getCheater(){
         return cheater;
+=======
+    public void setItem(Item i){
+        this.item = i;
+        if(i instanceof Cheater){
+            this.cheater = (Cheater) i; 
+        }
+        if(i instanceof Bazooka){
+            this.bazooka = (Bazooka) i; 
+        }
+        if(i instanceof Helper){
+            this.helper = (Helper) i; 
+        }
+    }
+    public Item getItem(){
+        return item;
+>>>>>>> 9c82e4cfbfb62d2e70e9c69559b4391086bc3e64
     }
     
     public int getCheaterID(){
