@@ -102,7 +102,7 @@ public class Doolhof extends JComponent {
                     for (int j = 0; j < 27; j++) {
                         if (levelOne[i][j] == 1) {
                             bord[i][j] = new Veld(x, y, true);
-                            if (i < 1 || i > 11 || j < 1 || j > 26) {
+                            if (i < 1 || i > 10 || j < 1 || j > 25) {
                                 bord[i][j].setMuur(false);
                             } else {
                                 bord[i][j].setMuur(true);
@@ -122,7 +122,7 @@ public class Doolhof extends JComponent {
                     for (int j = 0; j < 27; j++) {
                         if (levelTwo[i][j] == 1) {
                             bord[i][j] = new Veld(x, y, true);
-                            if (i < 1 || i > 11 || j < 1 || j > 26) {
+                            if (i < 1 || i > 10 || j < 1 || j > 25) {
                                 bord[i][j].setMuur(false);
                             } else {
                                 bord[i][j].setMuur(true);
@@ -142,7 +142,7 @@ public class Doolhof extends JComponent {
                     for (int j = 0; j < 27; j++) {
                         if (levelThree[i][j] == 1) {
                             bord[i][j] = new Veld(x, y, true);
-                            if (i < 1 || i > 11 || j < 1 || j > 26) {
+                            if (i < 1 || i > 10 || j < 1 || j > 25) {
                                 bord[i][j].setMuur(false);
                             } else {
                                 bord[i][j].setMuur(true);
