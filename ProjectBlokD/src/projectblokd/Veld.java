@@ -4,8 +4,6 @@
  */
 package projectblokd;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Quinten
@@ -104,6 +102,10 @@ public class Veld {
     
     public Bazooka getBazooka(){
         return bazooka;
+    }
+    
+    public Helper getHelper(){
+        return helper;
     }
     public void setItem(Item i, int id){
         this.item = i;

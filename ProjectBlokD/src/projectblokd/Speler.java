@@ -85,6 +85,19 @@ public class Speler extends Item {
             return -1;
         }
     }
+    
+    private int checkForHelper() {
+        try {
+            if (this.getMyField().getHelper().getActivated() == false) {
+                itemID = this.getMyField().getItemID();
+                return itemID;
+            } else {
+                return -1;
+            }
+        } catch (NullPointerException e) {
+            return -1;
+        }
+    }
 
     public int moveLeft() {
         setMyField(myField.getLeftField());
@@ -97,6 +110,9 @@ public class Speler extends Item {
         if (checkForBazooka() > 0) {
             this.ammo++;
             return checkForBazooka();
+        }
+        if (checkForHelper() > 0) {
+            return checkForHelper();
         }
         return -1;
     }
@@ -113,6 +129,9 @@ public class Speler extends Item {
             this.ammo++;
             return checkForBazooka();
         }
+        if (checkForHelper() > 0) {
+            return checkForHelper();
+        }
         return -1;
     }
 
@@ -128,6 +147,9 @@ public class Speler extends Item {
             this.ammo++;
             return checkForBazooka();
         }
+        if (checkForHelper() > 0) {
+            return checkForHelper();
+        }
         return -1;
     }
 
@@ -142,6 +164,9 @@ public class Speler extends Item {
         if (checkForBazooka() > 0) {
             this.ammo++;
             return checkForBazooka();
+        }
+        if (checkForHelper() > 0) {
+            return checkForHelper();
         }
         return -1;
     }

@@ -35,11 +35,13 @@ public class Doolhof extends JComponent {
     private Vriend vriend;
     private Image vriendImage;
     
-    private int bazookaID;
     private Bazooka bazooka1;
     private Bazooka bazooka2;
     private Image bazooka1Image;
     private Image bazooka2Image;
+    
+    private Helper helper;
+    private Image helperImage;
     
     private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                 {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
@@ -89,6 +91,7 @@ public class Doolhof extends JComponent {
         createVriend();
         createCheaters();
         createBazooka();
+        createHelper();
     }
 
     private void fillBord() {
@@ -320,6 +323,27 @@ public class Doolhof extends JComponent {
         }
     }
     
+    private void createHelper(){
+        helper = new Helper();
+        
+        helperImage = helper.setImage("/images/helper.png");
+        
+        switch(level){
+            case 1:
+                helper.setMyField(bord[3][4]);
+                bord[3][4].setItem(helper, 6);
+                break;
+            case 2:
+                helper.setMyField(bord[3][7]);
+                bord[3][7].setItem(helper, 6);
+                break;
+            case 3:
+                helper.setMyField(bord[6][21]);
+                bord[6][21].setItem(helper, 6);
+                break;
+        }
+    }
+    
     public void fireBazooka(){
         if(speler.getAmmo() > 0){
             Bazooka firedBazooka = new Bazooka();
@@ -351,6 +375,10 @@ public class Doolhof extends JComponent {
             bazooka2.setActivated();
             bazooka2Image = bazooka2.setImage("/images/removedItem.png");
         }
+        if(itemID == 6 && helper.getActivated() == false){
+            helper.setActivated();
+            helperImage = helper.setImage("/images/removedItem.png");
+        }
         repaint();
     }
 
@@ -372,6 +400,8 @@ public class Doolhof extends JComponent {
         
         g.drawImage(bazooka1Image, bazooka1.getX(), bazooka1.getY(), 30, 30, this);
         g.drawImage(bazooka2Image, bazooka2.getX(), bazooka2.getY(), 30, 30, this);
+        
+        g.drawImage(helperImage, helper.getX(), helper.getY(), 30, 30, this);
         
         g.drawImage(spelerImage, speler.getX(), speler.getY(), 30, 30, this);
 
