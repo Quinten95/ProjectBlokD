@@ -355,6 +355,11 @@ public class Doolhof extends JComponent {
     }
 
     public void paintMaze() {
+        
+        repaint();
+    }
+    
+    public void checkForItems(){
         if (itemID == 1 && cheater1.getActivated() == false) {
             cheater1.setActivated();
             cheater1Image = cheater1.setImage("/images/removedItem.png");
@@ -379,7 +384,6 @@ public class Doolhof extends JComponent {
             helper.setActivated();
             helperImage = helper.setImage("/images/removedItem.png");
         }
-        repaint();
     }
 
     @Override

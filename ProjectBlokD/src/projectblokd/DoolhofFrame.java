@@ -66,24 +66,28 @@ public class DoolhofFrame extends JFrame {
                 case KeyEvent.VK_DOWN:
                     doolhof.setSpelerImage("/images/MainCharacterDown.png");
                     doolhof.moveSpelerDown();
+                    doolhof.checkForItems();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_UP:
                     doolhof.setSpelerImage("/images/MainCharacterUp.png");
                     doolhof.moveSpelerUp();
+                    doolhof.checkForItems();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_LEFT:
                     doolhof.setSpelerImage("/images/MainCharacterLeft.png");
                     doolhof.moveSpelerLeft();
+                    doolhof.checkForItems();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_RIGHT:
                     doolhof.setSpelerImage("/images/MainCharacterRight.png");
                     doolhof.moveSpelerRight();
+                    doolhof.checkForItems();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
