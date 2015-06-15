@@ -4,10 +4,12 @@
  */
 package projectblokd;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Stack;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
@@ -42,6 +44,7 @@ public class Doolhof extends JComponent {
     
     private Helper helper;
     private Image helperImage;
+    private Stack<Veld> kortstePad = new Stack<>();
     
     private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                 {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
@@ -381,6 +384,7 @@ public class Doolhof extends JComponent {
             bazooka2Image = bazooka2.setImage("/images/removedItem.png");
         }
         if(itemID == 6 && helper.getActivated() == false){
+            kortstePad = helper.getKorstePad(speler.getMyField());
             helper.setActivated();
             helperImage = helper.setImage("/images/removedItem.png");
         }
@@ -394,6 +398,12 @@ public class Doolhof extends JComponent {
                 if (bord[y][x].getIsWall()) {
                     g.drawImage(wallImage, bord[y][x].getX(), bord[y][x].getY(), 35, 35, this);
                 }
+            }
+        }
+        if(kortstePad.size() > 0){
+            for(Veld v : kortstePad){
+                g.setColor(Color.GREEN);
+                g.fillRect(v.getX(), v.getY(), 30, 30);
             }
         }
 

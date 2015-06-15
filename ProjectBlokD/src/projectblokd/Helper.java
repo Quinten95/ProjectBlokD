@@ -5,8 +5,8 @@
 package projectblokd;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Stack;
 import javax.imageio.ImageIO;
 
 /**
@@ -19,19 +19,36 @@ public class Helper extends Item {
     private Veld myField;
     private int x;
     private int y;
+    
+    private Stack<Veld> kortstePad = new Stack<>();
+    private int padLengte = Integer.MAX_VALUE;
+    public static enum Richting{
+        up, down, right, left
+    }
 
-    public void zoekPad(Veld v, Queue<Veld> pad) {
-        int padLengte = 0;
-        
+    private void zoekPad(Veld v, Stack<Veld> pad) {
         if ((!v.getIsWall()) && (!pad.contains(v))) {
-            pad.add(v);
+            pad.push(v);
             padLengte++;
             if(v.getHasFriend() && pad.size() < padLengte){
-                
+                kortstePad = (Stack<Veld>) pad.clone();
+                padLengte = pad.size();
+            }
+            else{
+                for(Richting richting : Richting.values()){
+                    zoekPad(v.getBuur(richting.toString()), pad);
+                }
             }
         }
     }
-
+    
+    public Stack getKorstePad(Veld v){
+        zoekPad(v, kortstePad);
+        System.out.println(kortstePad.size());
+        
+        return kortstePad;
+    }
+    
     public void setMyField(Veld v) {
         this.myField = v;
         setX();

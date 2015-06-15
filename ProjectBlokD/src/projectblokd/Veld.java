@@ -88,6 +88,20 @@ public class Veld {
         return downField;
     }
     
+    public Veld getBuur(String richting){
+        switch(richting){
+            case "up":
+                return upField;
+            case "down":
+                return downField;
+            case "left":
+                return leftField;
+            case "right":
+                return rightField;
+        }
+        return this;
+    }
+    
     public void setHasFriend(boolean hasFriend){
         this.hasFriend = hasFriend;
     }
