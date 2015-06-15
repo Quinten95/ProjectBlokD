@@ -430,6 +430,7 @@ public class Doolhof extends JComponent {
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
+            kortstePad.clear();
             init();
         }
         speler.setLastDirection("right");
@@ -441,6 +442,7 @@ public class Doolhof extends JComponent {
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
+            kortstePad.clear();
             init();
         }
         speler.setLastDirection("left");
@@ -453,6 +455,7 @@ public class Doolhof extends JComponent {
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
+            kortstePad.clear();
             init();
         }
         speler.setLastDirection("down");
@@ -465,6 +468,7 @@ public class Doolhof extends JComponent {
         }
         if (speler.getMyField().getHasFriend()) {
             level++;
+            kortstePad.clear();
             init();
         }
         speler.setLastDirection("up");

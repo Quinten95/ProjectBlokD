@@ -43,9 +43,7 @@ public class Helper extends Item {
     }
     
     public Stack getKorstePad(Veld v){
-        zoekPad(v, kortstePad);
-        System.out.println(kortstePad.size());
-        
+        zoekPad(v, kortstePad);        
         return kortstePad;
     }
     
