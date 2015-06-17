@@ -71,23 +71,8 @@ public class Veld {
         this.isWall = isWall;
     }
     
-    public Veld getRightField(){
-        return rightField;
-    }
     
-    public Veld getLeftField(){
-        return leftField;
-    }
-    
-    public Veld getUpField(){
-        return upField;
-    }
-    
-    public Veld getDownField(){
-        return downField;
-    }
-    
-    public Veld getBuur(String richting){
+    public Veld getNeighbourField(String richting){
         switch(richting){
             case "up":
                 return upField;

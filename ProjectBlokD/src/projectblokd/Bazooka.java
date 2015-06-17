@@ -15,7 +15,6 @@ public class Bazooka extends Item {
 
     private boolean activated = false;
     private Veld myField;
-    private String lastDirection;
 
     public void setMyField(Veld v) {
         this.myField = v;
@@ -26,44 +25,14 @@ public class Bazooka extends Item {
     }
 
     public void fireBazooka(String direction) {
-        this.lastDirection = direction;
-        switch (lastDirection) {
-            case "left":
-                while (getMyField().getLeftField().getIsWall() == false) {
-                    setMyField(getMyField().getLeftField());
-                }
-                if (getMyField().getLeftField().getMuur().getVerwoestbaar()) {
-                    getMyField().getLeftField().setIsWall(false);
-                }
-                break;
-                
-            case "right":
-                while (getMyField().getRightField().getIsWall() == false) {
-                    setMyField(getMyField().getRightField());
-                }
-                if (getMyField().getRightField().getMuur().getVerwoestbaar()) {
-                    getMyField().getRightField().setIsWall(false);
-                }
-                break;
-                
-            case "up":
-                while (getMyField().getUpField().getIsWall() == false) {
-                    setMyField(getMyField().getUpField());
-                }
-                if (getMyField().getUpField().getMuur().getVerwoestbaar()) {
-                    getMyField().getUpField().setIsWall(false);
-                }
-                break;
-                
-            case "down":
-                while (getMyField().getDownField().getIsWall() == false) {
-                    setMyField(getMyField().getDownField());
-                }
-                if (getMyField().getDownField().getMuur().getVerwoestbaar()) {
-                    getMyField().getDownField().setIsWall(false);
-                }
-                break;
+
+        while (getMyField().getNeighbourField(direction).getIsWall() == false) {
+            setMyField(getMyField().getNeighbourField(direction));
         }
+        if (getMyField().getNeighbourField(direction).getMuur().getVerwoestbaar()) {
+            getMyField().getNeighbourField(direction).setIsWall(false);
+        }
+
     }
 
     public BufferedImage setImage(String path) {

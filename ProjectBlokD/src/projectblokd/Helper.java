@@ -34,7 +34,7 @@ public class Helper extends Item {
             }
             else{
                 for(Richting richting : Richting.values()){
-                    zoekPad(v.getBuur(richting.toString()), pad); 
+                    zoekPad(v.getNeighbourField(richting.toString()), pad); 
                 }
             }
             pad.pop();

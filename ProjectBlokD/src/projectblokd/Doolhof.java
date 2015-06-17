@@ -389,7 +389,7 @@ public class Doolhof extends JComponent {
 
     @Override
     public void paintComponent(Graphics g) {
-        wallImage = this.setWallImage("/images/Wall.jpg");
+        wallImage = this.setWallImage("/images/wall.png");
         for (int y = 0; y < 12; y++) {
             for (int x = 0; x < 27; x++) {
                 if (bord[y][x].getIsWall()) {

@@ -65,8 +65,8 @@ public class Speler extends Item {
     }
     
     public void move(String richting){
-        if(this.getMyField().getBuur(richting).getIsWall() == false){
-            setMyField(myField.getBuur(richting));
+        if(this.getMyField().getNeighbourField(richting).getIsWall() == false){
+            setMyField(myField.getNeighbourField(richting));
             this.stappen++;
             checkForItem();
         }
