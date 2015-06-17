@@ -10,7 +10,6 @@ package projectblokd;
  */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,29 +64,33 @@ public class DoolhofFrame extends JFrame {
             switch (evt.getKeyCode()) {
                 case KeyEvent.VK_DOWN:
                     doolhof.setSpelerImage("/images/MainCharacterDown.png");
-                    doolhof.moveSpelerDown();
+                    doolhof.moveSpeler("down");
                     doolhof.checkForItems();
+                    lastLevel();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_UP:
                     doolhof.setSpelerImage("/images/MainCharacterUp.png");
-                    doolhof.moveSpelerUp();
+                    doolhof.moveSpeler("up");
                     doolhof.checkForItems();
+                    lastLevel();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_LEFT:
                     doolhof.setSpelerImage("/images/MainCharacterLeft.png");
-                    doolhof.moveSpelerLeft();
+                    doolhof.moveSpeler("left");
                     doolhof.checkForItems();
+                    lastLevel();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
                 case KeyEvent.VK_RIGHT:
                     doolhof.setSpelerImage("/images/MainCharacterRight.png");
-                    doolhof.moveSpelerRight();
+                    doolhof.moveSpeler("right");
                     doolhof.checkForItems();
+                    lastLevel();
                     doolhof.paintMaze();
                     displayLabels();
                     break;
@@ -102,6 +105,19 @@ public class DoolhofFrame extends JFrame {
     public void displayLabels() {
         aantalStappen.setText("Stappen: " + doolhof.getSpelerStappen());
         ammo.setText("Ammo: " + doolhof.getSpelerAmmo());
+    }
+    
+    private void lastLevel(){
+        if(doolhof.getLevel() == 4){
+            int confirm = JOptionPane.showConfirmDialog(rootPane, "U heeft het spel uitgespeeld, wilt u opnieuw beginnen?", "uitgespeeld", JOptionPane.YES_NO_OPTION);
+            if(confirm == JOptionPane.YES_OPTION){
+                doolhof.setLevel(1);
+                doolhof.init();
+                doolhof.requestFocusInWindow();
+            }else{
+                this.dispose();
+            }
+        }
     }
 
     public final void initComponents() {

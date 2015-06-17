@@ -4,10 +4,6 @@
  */
 package projectblokd;
 
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
-
 /**
  *
  * @author Quinten

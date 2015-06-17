@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Stack;
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -22,7 +21,6 @@ public class Doolhof extends JComponent {
     private Speler speler;
     private Image spelerImage;
     
-    private int itemID;
     private Cheater cheater1;
     private Cheater cheater2;
     private Cheater cheater3;
@@ -45,6 +43,7 @@ public class Doolhof extends JComponent {
     private Helper helper;
     private Image helperImage;
     private Stack<Veld> kortstePad = new Stack<>();
+    private int startCounter;
     
     private int[][] levelOne = {{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                 {1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1},
@@ -95,6 +94,7 @@ public class Doolhof extends JComponent {
         createCheaters();
         createBazooka();
         createHelper();
+        startCounter = 0;
     }
 
     private void fillBord() {
@@ -259,36 +259,36 @@ public class Doolhof extends JComponent {
         switch (level) {
             case 1:
                 cheater1.setMyField(bord[6][11]);
-                bord[6][11].setItem(cheater1, 1);
+                bord[6][11].setItem(cheater1);
 
                 cheater2.setMyField(bord[5][2]);
-                bord[5][2].setItem(cheater2, 2);
+                bord[5][2].setItem(cheater2);
 
                 cheater3.setMyField(bord[2][21]);
-                bord[2][21].setItem(cheater3, 3);
+                bord[2][21].setItem(cheater3);
                 break;
 
             case 2:
                 cheater1.setMyField(bord[6][15]);
-                bord[6][15].setItem(cheater1, 1);
+                bord[6][15].setItem(cheater1);
 
                 cheater2.setMyField(bord[5][3]);
-                bord[5][3].setItem(cheater2, 2);
+                bord[5][3].setItem(cheater2);
 
                 cheater3.setMyField(bord[3][21]);
-                bord[3][21].setItem(cheater3, 3);
+                bord[3][21].setItem(cheater3);
 
                 break;
 
             case 3:
                 cheater1.setMyField(bord[5][8]);
-                bord[5][8].setItem(cheater1, 1);
+                bord[5][8].setItem(cheater1);
 
                 cheater2.setMyField(bord[6][1]);
-                bord[6][1].setItem(cheater2, 2);
+                bord[6][1].setItem(cheater2);
 
                 cheater3.setMyField(bord[2][25]);
-                bord[2][25].setItem(cheater3, 3);
+                bord[2][25].setItem(cheater3);
 
                 break;
         }
@@ -304,24 +304,24 @@ public class Doolhof extends JComponent {
         switch(level){
             case 1:
                 bazooka1.setMyField(bord[10][13]);
-                bord[10][13].setItem(bazooka1, 4);
+                bord[10][13].setItem(bazooka1);
                 
                 bazooka2.setMyField(bord[1][14]);
-                bord[1][14].setItem(bazooka2, 5);
+                bord[1][14].setItem(bazooka2);
                 break;
             case 2:
                 bazooka1.setMyField(bord[10][6]);
-                bord[10][6].setItem(bazooka1, 4);
+                bord[10][6].setItem(bazooka1);
                 
                 bazooka2.setMyField(bord[1][11]);
-                bord[1][11].setItem(bazooka2, 5);
+                bord[1][11].setItem(bazooka2);
                 break;
             case 3:
                 bazooka1.setMyField(bord[10][3]);
-                bord[10][3].setItem(bazooka1, 4);
+                bord[10][3].setItem(bazooka1);
                 
                 bazooka2.setMyField(bord[4][25]);
-                bord[4][25].setItem(bazooka2, 5);
+                bord[4][25].setItem(bazooka2);
                 break;
         }
     }
@@ -334,15 +334,15 @@ public class Doolhof extends JComponent {
         switch(level){
             case 1:
                 helper.setMyField(bord[3][4]);
-                bord[3][4].setItem(helper, 6);
+                bord[3][4].setItem(helper);
                 break;
             case 2:
                 helper.setMyField(bord[3][7]);
-                bord[3][7].setItem(helper, 6);
+                bord[3][7].setItem(helper);
                 break;
             case 3:
                 helper.setMyField(bord[6][21]);
-                bord[6][21].setItem(helper, 6);
+                bord[6][21].setItem(helper);
                 break;
         }
     }
@@ -358,35 +358,32 @@ public class Doolhof extends JComponent {
     }
 
     public void paintMaze() {
-        
         repaint();
     }
     
     public void checkForItems(){
-        if (itemID == 1 && cheater1.getActivated() == false) {
-            cheater1.setActivated();
+        if (cheater1.getActivated()) {
             cheater1Image = cheater1.setImage("/images/removedItem.png");
         }
-        if (itemID == 2 && cheater2.getActivated() == false) {
-            cheater2.setActivated();
+        if (cheater2.getActivated()) {
             cheater2Image = cheater2.setImage("/images/removedItem.png");
         }
-        if(itemID == 3 && cheater3.getActivated() == false) {
-            cheater3.setActivated();
+        if (cheater3.getActivated()) {
             cheater3Image = cheater3.setImage("/images/removedItem.png");
         }
-        if(itemID == 4 && bazooka1.getActivated() == false){
-            bazooka1.setActivated();
+        if(bazooka1.getActivated()){
             bazooka1Image = bazooka1.setImage("/images/removedItem.png");
         }
-        if(itemID == 5 && bazooka2.getActivated() == false){
-            bazooka2.setActivated();
+        if(bazooka2.getActivated()){
             bazooka2Image = bazooka2.setImage("/images/removedItem.png");
         }
-        if(itemID == 6 && helper.getActivated() == false){
-            kortstePad = helper.getKorstePad(speler.getMyField());
-            helper.setActivated();
+        if(helper.getActivated()){
             helperImage = helper.setImage("/images/removedItem.png");
+            kortstePad = helper.getKorstePad(speler.getMyField());
+            startCounter++;
+            if(startCounter > 6){
+                kortstePad.clear();
+            }
         }
     }
 
@@ -408,70 +405,29 @@ public class Doolhof extends JComponent {
         }
 
 
-        g.drawImage(cheater1Image, cheater1.getX(), cheater1.getY(), 30, 30, this);
-        g.drawImage(cheater2Image, cheater2.getX(), cheater2.getY(), 30, 30, this);
-        g.drawImage(cheater3Image, cheater3.getX(), cheater3.getY(), 30, 30, this);
+        g.drawImage(cheater1Image, cheater1.getMyField().getX(), cheater1.getMyField().getY(), 30, 30, this);
+        g.drawImage(cheater2Image, cheater2.getMyField().getX(), cheater2.getMyField().getY(), 30, 30, this);
+        g.drawImage(cheater3Image, cheater3.getMyField().getX(), cheater3.getMyField().getY(), 30, 30, this);
         
-        g.drawImage(bazooka1Image, bazooka1.getX(), bazooka1.getY(), 30, 30, this);
-        g.drawImage(bazooka2Image, bazooka2.getX(), bazooka2.getY(), 30, 30, this);
+        g.drawImage(bazooka1Image, bazooka1.getMyField().getX(), bazooka1.getMyField().getY(), 30, 30, this);
+        g.drawImage(bazooka2Image, bazooka2.getMyField().getX(), bazooka2.getMyField().getY(), 30, 30, this);
         
-        g.drawImage(helperImage, helper.getX(), helper.getY(), 30, 30, this);
+        g.drawImage(helperImage, helper.getMyField().getX(), helper.getMyField().getY(), 30, 30, this);
         
-        g.drawImage(spelerImage, speler.getX(), speler.getY(), 30, 30, this);
+        g.drawImage(spelerImage, speler.getMyField().getX(), speler.getMyField().getY(), 30, 30, this);
 
-        g.drawImage(vriendImage, vriend.getX(), vriend.getY(), 30, 30, this);
+        g.drawImage(vriendImage, vriend.getMyField().getX(), vriend.getMyField().getY(), 30, 30, this);
 
     }
 
-    public void moveSpelerRight() {
-        if (speler.getMyField().getRightField().getIsWall() == false) {
-            itemID = speler.moveRight();
-            
-        }
+    public void moveSpeler(String richting){
+        speler.move(richting);
         if (speler.getMyField().getHasFriend()) {
             level++;
             kortstePad.clear();
             init();
         }
-        speler.setLastDirection("right");
-    }
-
-    public void moveSpelerLeft() {
-        if (speler.getMyField().getLeftField().getIsWall() == false) {
-            itemID = speler.moveLeft();
-        }
-        if (speler.getMyField().getHasFriend()) {
-            level++;
-            kortstePad.clear();
-            init();
-        }
-        speler.setLastDirection("left");
-    }
-
-    public void moveSpelerDown() {
-        if (speler.getMyField().getDownField().getIsWall() == false) {
-            itemID = speler.moveDown();
-            
-        }
-        if (speler.getMyField().getHasFriend()) {
-            level++;
-            kortstePad.clear();
-            init();
-        }
-        speler.setLastDirection("down");
-    }
-
-    public void moveSpelerUp() {
-        if (speler.getMyField().getUpField().getIsWall() == false) {
-            itemID = speler.moveUp();
-            
-        }
-        if (speler.getMyField().getHasFriend()) {
-            level++;
-            kortstePad.clear();
-            init();
-        }
-        speler.setLastDirection("up");
+        speler.setLastDirection(richting);
     }
 
     public int getSpelerStappen() {
@@ -484,7 +440,14 @@ public class Doolhof extends JComponent {
     public void setSpelerImage(String path) {
         spelerImage = speler.setImage(path);
     }
-
+    
+    public int getLevel(){
+        return level;
+    }
+    
+    public void setLevel(int level){
+        this.level = level;
+    }
     public BufferedImage setWallImage(String path) {
         BufferedImage image = null;
         try {

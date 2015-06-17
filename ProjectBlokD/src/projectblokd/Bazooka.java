@@ -15,34 +15,14 @@ public class Bazooka extends Item {
 
     private boolean activated = false;
     private Veld myField;
-    private int x;
-    private int y;
     private String lastDirection;
 
     public void setMyField(Veld v) {
         this.myField = v;
-        setX();
-        setY();
     }
 
     public Veld getMyField() {
         return myField;
-    }
-
-    private void setX() {
-        this.x = myField.getX();
-    }
-
-    private void setY() {
-        this.y = myField.getY();
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getX() {
-        return x;
     }
 
     public void fireBazooka(String direction) {

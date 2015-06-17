@@ -24,7 +24,6 @@ public class Veld {
     private Veld leftField;
     private Veld upField;
     private Veld downField;
-    private int ItemID;
     
     public Veld(int x, int y, boolean isWall){
         this.x = x;
@@ -102,6 +101,7 @@ public class Veld {
         return this;
     }
     
+    
     public void setHasFriend(boolean hasFriend){
         this.hasFriend = hasFriend;
     }
@@ -121,9 +121,13 @@ public class Veld {
     public Helper getHelper(){
         return helper;
     }
-    public void setItem(Item i, int id){
+    
+    public Item getItem(){
+        return item;
+    }
+    
+    public void setItem(Item i){
         this.item = i;
-        this.ItemID = id;
         
         if(i instanceof Cheater){
             this.cheater = (Cheater) i;
@@ -137,11 +141,4 @@ public class Veld {
     
     }
     
-    public int getItemID(){
-        return ItemID;
-    }
-        
-    public void moveItem(Item i){
-        
-    }
 }
